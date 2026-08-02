@@ -3,7 +3,6 @@ package at.yedel.dreamersdeluxe.features;
 
 
 import at.yedel.dreamersdeluxe.utils.Constants;
-import at.yedel.dreamersdeluxe.utils.TextUtils;
 import cc.polyfrost.oneconfig.events.event.ReceivePacketEvent;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
@@ -50,8 +49,12 @@ public class BedwarsXPHud extends SingleTextHud {
             return "§b3,550§7/§a5,000";
         }
         else {
-            return "§b" + TextUtils.commafy(bedwarsXP) + "§7/§a5,000";
+            return "§b" + commafy(bedwarsXP) + "§7/§a5,000";
         }
+    }
+
+    private String commafy(int number) {
+        return String.format("%,d", number);
     }
 
     @Override

@@ -6,7 +6,7 @@
 
 ![GitHub Release](https://img.shields.io/github/v/release/Yedelo/DreamersDeluxe?label=GitHub%20version)
 
-![Modrinth Version](https://img.shields.io/modrinth/v/oYw9EG5g?label=Modrinth%20version)
+![Modrinth Version](https://img.shields.io/modrinth/v/zzBOJg4N?label=Modrinth%20version)
 
 Use /dreamersdeluxe for settings and more info.
 
