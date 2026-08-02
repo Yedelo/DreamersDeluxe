@@ -46,12 +46,12 @@ dependencies {
 toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
-    useTweaker("at.yedel.yedelmod.launch.YedelModTweaker")
-    useForgeMixin("yedelmod")
-    useMixinRefMap("yedelmod")
+    useTweaker("at.yedel.dreamersdeluxe.launch.DreamersDeluxeTweaker")
+    useForgeMixin("dreamersdeluxe")
+    useMixinRefMap("dreamersdeluxe")
 
     useDevAuth(devAuthVersion)
-    useArgument("--version", "YedelMod", GameSide.BOTH)
+    useArgument("--version", "DreamersDeluxe", GameSide.BOTH)
     val resourcePackDir: String? = System.getenv("minecraft.resourcePackDir")
     if (!resourcePackDir.isNullOrBlank()) {
         println("Using resource pack directory $resourcePackDir from environment variable minecraft.resourcePackDir")
@@ -61,17 +61,17 @@ toolkitLoomHelper {
 
 tasks {
     jar {
-        archiveFileName = "YedelMod-$version+${mcData}.jar"
+        archiveFileName = "DreamersDeluxe-$version+${mcData}.jar"
         manifest.attributes(
             mapOf(
-                "Main-Class" to "at.yedel.yedelmod.launch.YedelModWindow",
+                "Main-Class" to "at.yedel.dreamersdeluxe.launch.DreamersDeluxeWindow",
                 "ModSide" to "CLIENT",
             )
         )
     }
     fatJar {
         configurations = listOf(shadeOptionally)
-        relocate("net.hypixel.modapi.tweaker", "at.yedel.yedelmod.launch")
+        relocate("net.hypixel.modapi.tweaker", "at.yedel.dreamersdeluxe.launch")
     }
 }
 

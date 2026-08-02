@@ -1,0 +1,9 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "at.yedel.dreamersdeluxe.mixins",
+  "client": [
+    "AccessorGuiChest",
+    "MixinGuiContainer"
+  ],
+  "minVersion": "0.7.11"
+}

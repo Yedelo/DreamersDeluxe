@@ -1,68 +1,39 @@
-﻿# YedelMod
+﻿# DreamersDeluxe
 
-![icon](src/main/resources/assets/yedelmod/yedelmod.png)
+![icon](src/main/resources/assets/dreamersdeluxe/dreamersdeluxe.png)
 
 ![Badge](https://img.shields.io/badge/discord-yedel-blue)
 
-![GitHub Release](https://img.shields.io/github/v/release/Yedelo/YedelMod?label=GitHub%20version)
+![GitHub Release](https://img.shields.io/github/v/release/Yedelo/DreamersDeluxe?label=GitHub%20version)
 
 ![Modrinth Version](https://img.shields.io/modrinth/v/oYw9EG5g?label=Modrinth%20version)
 
-Use /yedel (/yedelmod) for settings and more info.
+Use /dreamersdeluxe for settings and more info.
 
-Use /yedel update or the check for update button in the settings menu to check for updates on Modrinth or GitHub.
-
-Use /yedel yedelmessage for messages from me regarding the mod. These are usually tips or bug notices.
+Use /dreamersdeluxe update or the check for update button in the settings menu to check for updates on Modrinth or GitHub.
 
 ## Dependency Information
 
 | **Mod versions** | **Powered by**                                           | **[Hypixel Mod API](https://github.com/HypixelDev/ModAPI)** |
 |------------------|----------------------------------------------------------|-------------------------------------------------------------|
-| 1.0.0 to 1.1.0   | [Essential](https://essential.gg/)                       | ❌ (not included or required)                                |
-| 1.2.0 to 1.5.1   | [Essential](https://essential.gg/)                       | ☑️ (separate download required)                             |
-| 2.0.0+           | [OneConfig](https://polyfrost.org/projects/oneconfig) v0 | ☑️ (separate download required)                             |
-| 2.3.0+           | [OneConfig](https://polyfrost.org/projects/oneconfig) v0 | ✅ (bundled via tweaker)                                     |
+| 1.0.0+           | [OneConfig](https://polyfrost.org/projects/oneconfig) v0 | ✅ (bundled via tweaker)                                     |
 
 ## Features
 
-<details><summary>Features</summary>
-
-- Custom Hit Particles
-- Regex Chat Filter
-- Random Placeholder
-- Favorite Server Button
-- Auto Welcome Guild Members
-- Dropper AutoGG
-- SkyWars Strength Indicators
-- Limbo Creative Mode
-- Easy Atlas Verdicts
-- Custom Text HUD
-
-</details>
-
-<details><summary>Commands</summary>
-
-All hosted under /yedel (yedelmod):
-
-- cleartext
-- constants
-- formatting
-- limbo (li)
-- limbocreative (limbogmc, lgmc)
-- ping [method]
-- playtime (pt)
-- setnick [nick]
-- settext [text]
-- settitle [title]
-- simulatechat (simc) [text]
-- update [platform]
-- yedelmessage (message)
-
-</details>
-
-<details><summary>BedWars</summary>
+<details><summary>Gameplay</summary>
 
 - BedWars Defusal Helper
+
+</details>
+
+<details><summary>Display</summary>
+
+- Bedwars XP Display HUD
+- Magic Milk Time HUD
+
+</details>
+
+<details><summary>Chat</summary>
 
 - Light Green Token Messages
 - Hide Token Messages
@@ -73,14 +44,5 @@ All hosted under /yedel (yedelmod):
 - Hide Silver Coin Count
 - Hide Comfy Pillow Messages
 - Hide Dreamer's Soul Fragment Messages
--
-- Bedwars XP Display HUD
-- Magic Milk Time HUD
-
-</details>
-
-<details><summary>TNT Tag</summary>
-
-- Bounty Hunting
 
 </details>
