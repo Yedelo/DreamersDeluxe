@@ -3,8 +3,7 @@ package at.yedel.dreamersdeluxe.launch;
 
 
 public class DreamersDeluxeConstants {
-	//@TODO make this cool logo
-	public static final String LOGO = "DreamersDeluxe";
+	public static final String LOGO = "§c§l+ Dreamers§b§lDeluxe +§r";
 
 	// Constants filled in from bloom
 
