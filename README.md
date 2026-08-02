@@ -18,6 +18,9 @@ Use /dreamersdeluxe update or the check for update button in the settings menu t
 |------------------|----------------------------------------------------------|-------------------------------------------------------------|
 | 1.0.0+           | [OneConfig](https://polyfrost.org/projects/oneconfig) v0 | ✅ (bundled via tweaker)                                     |
 
+Note: This mod conflicts with YedelMod <2.4.0 because of local Hypixel Mod API compatibility.
+To fix this, use system property `yedelmod.launch.local-mod-api-compatibility=false` or `dreamersdeluxe.launch.local-mod-api-compatibility=false`
+
 ## Features
 
 <details><summary>Gameplay</summary>
