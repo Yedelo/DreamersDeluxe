@@ -2,9 +2,7 @@ package at.yedel.dreamersdeluxe.utils.update;
 
 
 
-import at.yedel.dreamersdeluxe.DreamersDeluxe;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
-import at.yedel.dreamersdeluxe.utils.ClickNotifications;
 import at.yedel.dreamersdeluxe.utils.Requests;
 import cc.polyfrost.oneconfig.libs.universal.UChat;
 import cc.polyfrost.oneconfig.libs.universal.UDesktop;
@@ -118,7 +116,7 @@ public class UpdateManager {
 			UChat.chat(new UTextComponent(DreamersDeluxeConstants.LOGO + " §eVersion " + newVersion + " is avaliable on " + updateSource.coloredName + "§e!").setClick(ClickEvent.Action.OPEN_URL, updateSource.uri.toString()));
 		}
 		else {
-			ClickNotifications.getInstance().send("DreamersDeluxe", "Version " + newVersion + " is avaliable on " + updateSource.name + "! Press %k to open.", () -> {
+			Notifications.INSTANCE.send("DreamersDeluxe", "Version " + newVersion + " is avaliable on " + updateSource.name + "! Press %k to open.", () -> {
 				if (!UDesktop.browse(updateSource.uri)) {
 					Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open link for " + updateSource.name + "!");
 				}

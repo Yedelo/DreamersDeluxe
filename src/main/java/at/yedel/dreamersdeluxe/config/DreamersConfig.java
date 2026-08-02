@@ -37,14 +37,6 @@ public class DreamersConfig extends Config {
         );
         initialize();
     }
-
-    @KeyBind(
-        name = "Click Notification Keybind",
-        description = "Clicks on the latest notification.",
-        size = 2
-    )
-    public OneKeyBind clickNotificationKeybind = new OneKeyBind(Keyboard.KEY_SEMICOLON);
-
     
     @Dropdown(
         name = "Update Source",

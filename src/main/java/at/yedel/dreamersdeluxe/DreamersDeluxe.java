@@ -8,7 +8,6 @@ import at.yedel.dreamersdeluxe.features.DefusalHelper;
 import at.yedel.dreamersdeluxe.features.DreamersDeluxeCommand;
 import at.yedel.dreamersdeluxe.features.ServerLocation;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
-import at.yedel.dreamersdeluxe.utils.ClickNotifications;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager.FeedbackMethod;
 import cc.polyfrost.oneconfig.events.EventManager;
@@ -53,7 +52,6 @@ public class DreamersDeluxe {
 		ServerLocation.getInstance();
 		registerEventListeners(
 			this,
-			ClickNotifications.getInstance(),
 
 			ChatFilters.getInstance(),
 			DefusalHelper.getInstance(),
