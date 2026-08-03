@@ -24,7 +24,7 @@ public class DreamersDeluxe implements ClientModInitializer {
 		return INSTANCE;
 	}
 
-	private DreamersDeluxe() {
+	public DreamersDeluxe() {
 		INSTANCE = this;
 	}
 
@@ -39,7 +39,6 @@ public class DreamersDeluxe implements ClientModInitializer {
 		ServerLocation.getInstance();
 		registerEventListeners(
 			ChatFilters.getInstance(),
-			DefusalHelper.getInstance(),
 			BedwarsXPHud.getInstance(),
 			MagicMilkTimeHud.getInstance()
 		);

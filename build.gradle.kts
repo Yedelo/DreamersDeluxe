@@ -1,3 +1,4 @@
+val modDescription: String by project
 val fabricLoaderVersion: String by project
 val oneconfigVersion: String by project
 val fabricApiVersion: String by project
@@ -50,6 +51,7 @@ tasks {
 
         fun target(version: String) = ">=$version"
         val props = buildMap {
+            register("description", modDescription)
             register("version", version.toString())
             register("java", target(javaVersion.majorVersion))
             register("fabricLoader", target(fabricLoaderVersion))
