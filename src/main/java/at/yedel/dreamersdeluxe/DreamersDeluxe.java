@@ -3,73 +3,54 @@ package at.yedel.dreamersdeluxe;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ChatFilters;
-import at.yedel.dreamersdeluxe.features.DefusalHelper;
-import at.yedel.dreamersdeluxe.features.DreamersDeluxeCommand;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.features.*;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager.FeedbackMethod;
-import cc.polyfrost.oneconfig.events.EventManager;
-import cc.polyfrost.oneconfig.utils.commands.CommandManager;
+
+import net.fabricmc.api.ClientModInitializer;
 import net.hypixel.modapi.HypixelModAPI;
 import net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.polyfrost.oneconfig.api.commands.v1.CommandManager;
+import org.polyfrost.oneconfig.api.event.v1.EventManager;
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 
 
 
-// Mod...
-@Mod(
-	modid = DreamersDeluxeConstants.MOD_ID,
-	name = DreamersDeluxeConstants.MOD_NAME,
-	version = DreamersDeluxeConstants.MOD_VERSION,
-	clientSideOnly = true
-)
-public class DreamersDeluxe {
-	@Instance
+public class DreamersDeluxe implements ClientModInitializer {
 	private static DreamersDeluxe INSTANCE;
 
 	public static DreamersDeluxe getInstance() {
 		return INSTANCE;
 	}
 
+	private DreamersDeluxe() {
+		INSTANCE = this;
+	}
+
 	public static final Logger LOGGER = LogManager.getLogger("DreamersDeluxe");
 
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
+	public void onInitializeClient() {
 		// Loads class. preload() exists for this but what ev
 		DreamersConfig.getInstance();
 		HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
-		CommandManager.INSTANCE.registerCommand(DreamersDeluxeCommand.getInstance());
+		CommandManager.register(DreamersDeluxeCommand.getInstance());
 
 		ServerLocation.getInstance();
 		registerEventListeners(
-			this,
-
 			ChatFilters.getInstance(),
 			DefusalHelper.getInstance(),
-			DreamersConfig.getInstance().bedwarsXPHud,
-			DreamersConfig.getInstance().magicMilkTimeHud
+			BedwarsXPHud.getInstance(),
+			MagicMilkTimeHud.getInstance()
 		);
-	}
-
-	@EventHandler
-	public void checkForUpdates(FMLLoadCompleteEvent event) {
-		if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().automaticallyCheckForUpdates) {
-			UpdateManager.getInstance().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), FeedbackMethod.NOTIFICATIONS);
-		}
+        HudManager.register(
+			BedwarsXPHud.getInstance(),
+	        MagicMilkTimeHud.getInstance()
+        );
 	}
 
 	private void registerEventListeners(Object... eventListeners) {
 		for (Object eventListener: eventListeners) {
-			MinecraftForge.EVENT_BUS.register(eventListener);
 			EventManager.INSTANCE.register(eventListener);
 		}
 	}

@@ -4,16 +4,9 @@ package at.yedel.dreamersdeluxe.config;
 
 import at.yedel.dreamersdeluxe.features.BedwarsXPHud;
 import at.yedel.dreamersdeluxe.features.MagicMilkTimeHud;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
-import at.yedel.dreamersdeluxe.utils.update.UpdateSource;
-import cc.polyfrost.oneconfig.config.Config;
-import cc.polyfrost.oneconfig.config.annotations.*;
-import cc.polyfrost.oneconfig.config.core.OneKeyBind;
-import cc.polyfrost.oneconfig.config.data.Mod;
-import cc.polyfrost.oneconfig.config.data.ModType;
-import cc.polyfrost.oneconfig.libs.universal.UDesktop;
-import cc.polyfrost.oneconfig.utils.Notifications;
-import org.lwjgl.input.Keyboard;
+import org.polyfrost.oneconfig.api.config.v1.Config;
+import org.polyfrost.oneconfig.api.config.v1.annotations.Checkbox;
+import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
 
 
 
@@ -25,106 +18,25 @@ public class DreamersConfig extends Config {
     }
 
     private DreamersConfig() {
-        super(
-            new Mod(
-                "DreamersDeluxe",
-                ModType.HYPIXEL,
-                "/assets/dreamersdeluxe/dreamersdeluxe.png"
-            ),
-            "dreamersdeluxe.json",
-            true,
-            true
-        );
-        initialize();
+        super("dreamersdeluxe", "/assets/dreamersdeluxe/dreamersdeluxe.png", "DreamersDeluxe", Category.HYPIXEL);
     }
-    
-    @Dropdown(
-        name = "Update Source",
-        description = "Where to get updates from. Use GitHub for earlier releases and Modrinth for more stable releases.",
-        category = "General",
-        subcategory = "Updates",
-        options = {"Modrinth", "GitHub"}
+
+    @Switch(
+        title = "Enabled",
+        description = "Global toggle for the mod."
     )
-    public int updateSource = 0;
-
-    public UpdateSource getUpdateSource() {
-        if (updateSource == 0) {
-            return UpdateSource.MODRINTH;
-        }
-        else {
-            return UpdateSource.GITHUB;
-        }
-    }
-
+    public boolean enabled = true;
     
     @Switch(
-        name = "Automatically Check for Updates",
-        description = "Checks for updates on game load",
-        category = "General",
-        subcategory = "Updates"
-    )
-    public boolean automaticallyCheckForUpdates = true;
-
-    @Button(
-        name = "Modrinth Link",
-        description = "Click to open the Modrinth site",
-        category = "General",
-        subcategory = "Updates",
-        text = "Open"
-    )
-    public void openModrinthLink() {
-        if (!UDesktop.browse(UpdateSource.MODRINTH.uri)) {
-            Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open modrinth link!");
-        }
-    }
-
-    @Button(
-        name = "GitHub Link",
-        description = "Click to open the GitHub repository",
-        category = "General",
-        subcategory = "Updates",
-        text = "Open"
-    )
-    public void openGitHubRepository() {
-        if (!UDesktop.browse(UpdateSource.GITHUB.uri)) {
-            Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open github link!");
-        }
-    }
-
-    @Button(
-        name = "Check for Updates",
-        description = "Check for updates with the selected source",
-        category = "General",
-        subcategory = "Updates",
-        text = "Check",
-        size = 2
-    )
-    public void checkForUpdates() {
-        UpdateManager.getInstance().checkForUpdates(getUpdateSource(), UpdateManager.FeedbackMethod.NOTIFICATIONS);
-    }
-    
-    @Switch(
-        name = "BedWars Defusal Helper",
+        title = "BedWars Defusal Helper",
         description = "Highlights redstone for the BedWars defusal challenge.",
         category = "Gameplay",
         subcategory = "Challenges"
     )
     public boolean bedwarsDefusalHelper = true;
-
-    @HUD(
-        name = "Bedwars XP Display HUD",
-        category = "Display"
-    )
-    public BedwarsXPHud bedwarsXPHud = new BedwarsXPHud();
-
-    @HUD(
-        name = "Magic Milk Time HUD",
-        category = "Display"
-    )
-    public MagicMilkTimeHud magicMilkTimeHud = new MagicMilkTimeHud();
     
     @Checkbox(
-        name = "Light Green Token Messages",
+        title = "Light Green Token Messages",
         description = "Make token messages light green instead of green (only in bedwars) to make them appear different from emerald messages.",
         category = "Chat",
         subcategory = "General"
@@ -132,7 +44,7 @@ public class DreamersConfig extends Config {
     public boolean lightGreenTokenMessages = false;
 
     @Checkbox(
-        name = "Hide Token Messages",
+        title = "Hide Token Messages",
         description = "Hide token messages completely.",
         category = "Chat",
         subcategory = "General"
@@ -140,7 +52,7 @@ public class DreamersConfig extends Config {
     public boolean hideTokenMessages = false;
 
     @Checkbox(
-        name = "Hide Bedwars XP Messages",
+        title = "Hide Bedwars XP Messages",
         description = "Hide bedwars xp messages in-game from things like kills and resources.",
         category = "Chat",
         subcategory = "General"
@@ -148,7 +60,7 @@ public class DreamersConfig extends Config {
     public boolean hideBedwarsXPMessages = false;
 
     @Checkbox(
-        name = "Hide Item Purchase Messages",
+        title = "Hide Item Purchase Messages",
         description = "Hide messages from purchasing items at the Item Shop.",
         category = "Chat",
         subcategory = "General"
@@ -156,34 +68,31 @@ public class DreamersConfig extends Config {
     public boolean hideItemPurchaseMessages = false;
 
     @Checkbox(
-        name = "Hide Punch Deposit Messages",
+        title = "Hide Punch Deposit Messages",
         description = "Hide messages from depositing items into chests.",
         category = "Chat",
         subcategory = "General"
     )
     public boolean hidePunchDepositMessages = false;
-
     
     @Checkbox(
-        name = "Hide Slumber Ticket Messages",
+        title = "Hide Slumber Ticket Messages",
         description = "Hide slumber ticket messages in-game from things like kills and wins.",
         category = "Chat",
         subcategory = "Slumber Hotel"
     )
     public boolean hideSlumberTicketMessages = false;
 
-    
     @Checkbox(
-        name = "Hide Silver Coin Count",
+        title = "Hide Silver Coin Count",
         description = "Hide the silver coin count from item purchase messages.",
         category = "Chat",
         subcategory = "Slumber Hotel"
     )
     public boolean hideSilverCoinCount = false;
 
-    
     @Checkbox(
-        name = "Hide Comfy Pillow Messages",
+        title = "Hide Comfy Pillow Messages",
         description = "Hides the following messages:" +
             "\n\"You are now carrying x1 Comfy Pillows, bring it back to your shop keeper!\"" +
             "\n\"You cannot return items to another team's Shopkeeper!\"" +
@@ -194,9 +103,8 @@ public class DreamersConfig extends Config {
     )
     public boolean hideComfyPillowMessages = false;
 
-    
     @Checkbox(
-        name = "Hide Dreamer's Soul Fragment Messages",
+        title = "Hide Dreamer's Soul Fragment Messages",
         description = "Hide \"+1 Dreamer's Soul Fragment!\" messages.",
         category = "Chat",
         subcategory = "Slumber Hotel"

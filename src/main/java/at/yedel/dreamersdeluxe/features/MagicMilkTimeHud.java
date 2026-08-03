@@ -2,66 +2,51 @@ package at.yedel.dreamersdeluxe.features;
 
 
 
-import at.yedel.dreamersdeluxe.utils.Constants;
-import cc.polyfrost.oneconfig.events.event.Stage;
-import cc.polyfrost.oneconfig.events.event.TickEvent;
-import cc.polyfrost.oneconfig.hud.SingleTextHud;
-import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
-import net.minecraft.init.Items;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import org.polyfrost.oneconfig.api.event.v1.events.TickEvent;
+import org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe;
+import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
 
-public class MagicMilkTimeHud extends SingleTextHud {
+public class MagicMilkTimeHud extends TextHud {
+    private static final MagicMilkTimeHud INSTANCE = new MagicMilkTimeHud();
+
+    public static MagicMilkTimeHud getInstance() {
+        return INSTANCE;
+    }
+
+    public MagicMilkTimeHud() {
+        super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk:", "");
+    }
+
     private int magicMilkTime;
     private int ticks;
 
-    public MagicMilkTimeHud() {
-        super(
-            "Magic Milk", // title is actually useful now
-            true, // enabled obviously
-            5, // x
-            25, // y
-            1, // normal size
-            false, // no background it's ugly
-            false, // no rounded corners it's also ugly
-            0, // NO rounded corners
-            0, // no x padding why would i want it
-            0, // no y padding for the same reason
-            Constants.EMPTY_COLOR, // no background color
-            false, // no border
-            0, // NO border
-            Constants.EMPTY_COLOR // no border color
-        );
-        textType = 1;
-    }
-
-    @SubscribeEvent
-    public void resetMagicMilkTime(PlayerUseItemEvent.Finish event) {
-        if (event.item.getItem() == Items.milk_bucket && ServerLocation.getInstance().isInBedwars()) {
+    public void handleMilk(Item item) {
+        if (ServerLocation.getInstance().isInBedwars() && item == Items.MILK_BUCKET) {
             magicMilkTime = 30;
         }
     }
 
+    // @TODO this goes too fast
     @Subscribe
-    public void decrementMagicMilkTime(TickEvent event) {
-        if (event.stage == Stage.START) {
-            if (ticks % 20 == 0) {
-                magicMilkTime --;
-            }
-            ticks ++;
+    public void decrementMagicMilkTime(TickEvent.Start event) {
+        if (ticks % 20 == 0) {
+            magicMilkTime--;
         }
+        ticks ++;
     }
 
     @Override
-    public boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && magicMilkTime > -1;
+    public boolean getHidden() {
+        return super.getHidden() || !ServerLocation.getInstance().isInBedwars() || magicMilkTime <= -1;
     }
 
     @Override
-    protected String getText(boolean example) {
-        if (example) return "§b25§as";
+    public String getText() {
+        if (!isReal()) return "§b25§as";
         else {
             return "§b" + magicMilkTime + "§as";
         }
