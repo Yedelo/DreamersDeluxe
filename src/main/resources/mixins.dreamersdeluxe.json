@@ -2,6 +2,8 @@
   "compatibilityLevel": "${mixinJava}",
   "package": "at.yedel.dreamersdeluxe.mixins",
   "client": [
+    "AbstractContainerScreenAccessor",
+    "AbstractContainerScreenMixin",
     "ItemStackMixin"
   ],
   "minVersion": "0.8"
