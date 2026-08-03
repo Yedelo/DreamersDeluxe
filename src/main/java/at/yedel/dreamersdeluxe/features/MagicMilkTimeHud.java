@@ -14,8 +14,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 public class MagicMilkTimeHud extends SingleTextHud {
-    private int magicMilkTime;
-    private int ticks;
+    private transient int magicMilkTime;
+    private transient int ticks;
 
     public MagicMilkTimeHud() {
         super(

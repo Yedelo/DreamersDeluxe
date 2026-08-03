@@ -11,8 +11,8 @@ import net.minecraft.network.play.server.S1FPacketSetExperience;
 
 
 public class BedwarsXPHud extends SingleTextHud {
-    private boolean hasExperience;
-    private int bedwarsXP;
+    private transient boolean hasExperience;
+    private transient int bedwarsXP;
 
     public BedwarsXPHud() {
         super(
