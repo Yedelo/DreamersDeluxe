@@ -40,15 +40,15 @@ public class MagicMilkTimeHud extends TextHud {
     }
 
     @Override
-    public boolean getHidden() {
-        return super.getHidden() || !ServerLocation.getInstance().isInBedwars() || magicMilkTime <= -1;
-    }
-
-    @Override
     public String getText() {
         if (!isReal()) return "§b25§as";
         else {
             return "§b" + magicMilkTime + "§as";
         }
     }
+
+    //    @Override
+    //    public boolean getHidden() {
+    //        return super.getHidden() || !ServerLocation.getInstance().isInBedwars() || magicMilkTime <= -1;
+    //    }
 }

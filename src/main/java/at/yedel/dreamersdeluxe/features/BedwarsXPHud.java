@@ -47,8 +47,8 @@ public class BedwarsXPHud extends TextHud {
         return String.format("%,d", number);
     }
 
-    @Override
-    public boolean getHidden() {
-        return super.getHidden() || !ServerLocation.getInstance().isInBedwars() || !hasExperience;
-    }
+//    @Override
+//    public boolean getHidden() {
+//        return super.getHidden() || !ServerLocation.getInstance().isInBedwars() || !hasExperience;
+//    }
 }
