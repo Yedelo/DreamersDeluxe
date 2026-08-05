@@ -55,7 +55,6 @@ public class DreamersDeluxe {
 
 			ChatFilters.getInstance(),
 			DefusalHelper.getInstance(),
-			DreamersConfig.getInstance().bedwarsXPHud,
 			DreamersConfig.getInstance().magicMilkTimeHud
 		);
 	}
