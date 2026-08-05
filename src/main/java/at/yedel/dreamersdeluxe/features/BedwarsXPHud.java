@@ -5,6 +5,7 @@ package at.yedel.dreamersdeluxe.features;
 import at.yedel.dreamersdeluxe.utils.Constants;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 
 
 
@@ -35,7 +36,9 @@ public class BedwarsXPHud extends SingleTextHud {
             return "§b3,550§7/§a5,000";
         }
         else {
-            float progress = Minecraft.getMinecraft().thePlayer.experience;
+            EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+            if (player == null) return "";
+            float progress = player.experience;
             int xp = (int) (progress * 5000);
             return "§b" + commafy(xp) + "§7/§a5,000";
         }
@@ -47,6 +50,6 @@ public class BedwarsXPHud extends SingleTextHud {
 
     @Override
     protected boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && Minecraft.getMinecraft().thePlayer.experience > 0;
+        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.experience > 0;
     }
 }
