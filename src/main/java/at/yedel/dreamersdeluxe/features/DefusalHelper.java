@@ -31,21 +31,12 @@ public class DefusalHelper {
     public void renderRedstoneHighlights(GuiContainer container, Slot slot) {
         if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().bedwarsDefusalHelper) {
             ItemStack stack = slot.getStack();
-            if (stack == null) {
-                return;
-            }
-            if (stack.getItem() == Items.redstone) {
-                if (container instanceof GuiChest) {
-                    if (Objects.equals(((AccessorGuiChest) container).getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) {
-                        highlightItem(slot, RED);
-                    }
-                }
-            }
+            if (stack == null) return;
+            if (stack.getItem() != Items.redstone) return;
+            if (!(container instanceof GuiChest)) return;
+            if (!Objects.equals(((AccessorGuiChest) container).getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) return;
+            UGraphics.GL.translate(0, 0, 1);
+            Platform.getGLPlatform().drawRect(slot.xDisplayPosition, slot.yDisplayPosition, slot.xDisplayPosition + 16, slot.yDisplayPosition + 16, RED);
         }
-    }
-
-    private void highlightItem(Slot slot, int color) {
-        UGraphics.GL.translate(0, 0, 1);
-        Platform.getGLPlatform().drawRect(slot.xDisplayPosition, slot.yDisplayPosition, slot.xDisplayPosition + 16, slot.yDisplayPosition + 16, color);
     }
 }
