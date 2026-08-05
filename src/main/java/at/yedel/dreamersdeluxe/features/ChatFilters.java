@@ -34,6 +34,7 @@ public class ChatFilters {
         .add("You died while carrying x1 Comfy Pillows!")
         .build();
 
+    //@TODO ChatEvent.Receive doesn't work
     @Subscribe
     public void modifyBedwarsChat(ChatEvent.Receive event) {
         if (DreamersConfig.getInstance().enabled && ServerLocation.getInstance().isInBedwars()) {
@@ -47,7 +48,7 @@ public class ChatFilters {
                     event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().lightGreenTokenMessages) {
-                    //@TODO check if this works
+                    //@TODO this does not work
                     // event.message = new UTextComponent(event.message.getFormattedText().replace("§2", "§a"));
                     event.setMessage(event.getMessage().replaceText(TextReplacementConfig.builder().matchLiteral("§2").replacement("§a").build()));
                 }
@@ -62,7 +63,6 @@ public class ChatFilters {
                     event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().hideSilverCoinCount && message.contains("(+1 Silver Coin [")) {
-                    //@TODO check if this works
                     // event.message = new UTextComponent(message.substring(0, message.indexOf(" (+1 Silver Coin [")));
                     event.setMessage(event.getMessage().replaceText(TextReplacementConfig.builder().matchLiteral(" (+1 Silver Coin [").replacement("").build()));
                 }

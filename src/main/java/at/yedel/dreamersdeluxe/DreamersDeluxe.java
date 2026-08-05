@@ -34,23 +34,10 @@ public class DreamersDeluxe implements ClientModInitializer {
 		// Loads class. preload() exists for this but what ev
 		DreamersConfig.getInstance();
 		HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
-		CommandManager.register(DreamersDeluxeCommand.getInstance());
 
 		ServerLocation.getInstance();
-		registerEventListeners(
-			ChatFilters.getInstance(),
-			BedwarsXPHud.getInstance(),
-			MagicMilkTimeHud.getInstance()
-		);
-        HudManager.register(
-			BedwarsXPHud.getInstance(),
-	        MagicMilkTimeHud.getInstance()
-        );
-	}
-
-	private void registerEventListeners(Object... eventListeners) {
-		for (Object eventListener: eventListeners) {
-			EventManager.INSTANCE.register(eventListener);
-		}
+		EventManager.INSTANCE.register(ChatFilters.getInstance());
+        HudManager.register(new BedwarsXPHud(), new MagicMilkTimeHud());
+		CommandManager.register(DreamersDeluxeCommand.getInstance());
 	}
 }
