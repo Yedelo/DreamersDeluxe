@@ -3,17 +3,12 @@ package at.yedel.dreamersdeluxe.features;
 
 
 import at.yedel.dreamersdeluxe.utils.Constants;
-import cc.polyfrost.oneconfig.events.event.ReceivePacketEvent;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
-import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
-import net.minecraft.network.play.server.S1FPacketSetExperience;
+import net.minecraft.client.Minecraft;
 
 
 
 public class BedwarsXPHud extends SingleTextHud {
-    private transient boolean hasExperience;
-    private transient int bedwarsXP;
-
     public BedwarsXPHud() {
         super(
             "XP", // title is actually useful now
@@ -34,22 +29,15 @@ public class BedwarsXPHud extends SingleTextHud {
         textType = 1;
     }
 
-    @Subscribe
-    public void setBedwarsExperience(ReceivePacketEvent event) {
-        if (event.packet instanceof S1FPacketSetExperience) {
-            float experience = ((S1FPacketSetExperience) event.packet).func_149397_c();
-            hasExperience = experience > 0;
-            bedwarsXP = (int) (experience * 5000);
-        }
-    }
-
     @Override
     protected String getText(boolean example) {
         if (example) {
             return "§b3,550§7/§a5,000";
         }
         else {
-            return "§b" + commafy(bedwarsXP) + "§7/§a5,000";
+            float progress = Minecraft.getMinecraft().thePlayer.experience;
+            int xp = (int) (progress * 5000);
+            return "§b" + commafy(xp) + "§7/§a5,000";
         }
     }
 
@@ -59,6 +47,6 @@ public class BedwarsXPHud extends SingleTextHud {
 
     @Override
     protected boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && hasExperience;
+        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && Minecraft.getMinecraft().thePlayer.experience > 0;
     }
 }
