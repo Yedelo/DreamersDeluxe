@@ -1,6 +1,5 @@
-**1.0.2**
+**1.0.3**
 
-- Add customizable defusal helper color
-- Improve Bedwars XP and Magic Milk time hud logic
+- Fix horrendous NPE with BedWars XP 
 
-there is no message for this release, this is just self reflection.
+pain
