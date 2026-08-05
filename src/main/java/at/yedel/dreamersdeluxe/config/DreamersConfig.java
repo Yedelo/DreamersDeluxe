@@ -2,10 +2,10 @@ package at.yedel.dreamersdeluxe.config;
 
 
 
-import at.yedel.dreamersdeluxe.features.BedwarsXPHud;
-import at.yedel.dreamersdeluxe.features.MagicMilkTimeHud;
 import org.polyfrost.oneconfig.api.config.v1.Config;
 import org.polyfrost.oneconfig.api.config.v1.annotations.Checkbox;
+import org.polyfrost.oneconfig.api.config.v1.annotations.Color;
+import org.polyfrost.oneconfig.api.config.v1.annotations.DependsOn;
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
 
 
@@ -34,6 +34,15 @@ public class DreamersConfig extends Config {
         subcategory = "Challenges"
     )
     public boolean bedwarsDefusalHelper = true;
+
+    @DependsOn("bedwarsDefusalHelper")
+    @Color(
+        title = "Defusal Helper Color",
+        description = "The color of defusal helper redstone highlights.",
+        category = "Gameplay",
+        subcategory = "Challenges"
+    )
+    public int defusalHelperColor = -631202;
     
     @Checkbox(
         title = "Light Green Token Messages",

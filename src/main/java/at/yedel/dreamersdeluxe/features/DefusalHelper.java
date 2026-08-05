@@ -24,7 +24,6 @@ public class DefusalHelper {
     private DefusalHelper() {}
 
     private final String DEFUSAL_WINDOW_TITLE = "§cC4 (Click §4§lREDSTONE§c)";
-    private final int RED = -631202;
 
     public void extractRedstoneHighlight(GuiGraphicsExtractor context, AbstractContainerScreen<ChestMenu> handledScreen, Slot slot) {
         if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().bedwarsDefusalHelper) {
@@ -34,7 +33,7 @@ public class DefusalHelper {
             // if (!Objects.equals(((AccessorGuiChest) container).getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) return;
             if (!Objects.equals(handledScreen.getTitle().getString(), DEFUSAL_WINDOW_TITLE)) return;
             context.pose().pushMatrix();
-            context.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, RED);
+            context.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, DreamersConfig.getInstance().defusalHelperColor);
             context.pose().popMatrix();
 
         }
