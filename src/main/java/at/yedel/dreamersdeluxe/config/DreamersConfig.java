@@ -8,12 +8,11 @@ import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
 import at.yedel.dreamersdeluxe.utils.update.UpdateSource;
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.*;
-import cc.polyfrost.oneconfig.config.core.OneKeyBind;
+import cc.polyfrost.oneconfig.config.core.OneColor;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
 import cc.polyfrost.oneconfig.libs.universal.UDesktop;
 import cc.polyfrost.oneconfig.utils.Notifications;
-import org.lwjgl.input.Keyboard;
 
 
 
@@ -36,6 +35,7 @@ public class DreamersConfig extends Config {
             true
         );
         initialize();
+        addDependency("defusalHelperColor", "bedwarsDefusalHelper");
     }
     
     @Dropdown(
@@ -110,6 +110,15 @@ public class DreamersConfig extends Config {
         subcategory = "Challenges"
     )
     public boolean bedwarsDefusalHelper = true;
+
+    @Color(
+        name = "Defusal Helper Color",
+        description = "The color of defusal helper redstone highlights.",
+        category = "Gameplay",
+        subcategory = "Challenges",
+        allowAlpha = false
+    )
+    public OneColor defusalHelperColor = new OneColor(246, 94, 94, 255);
 
     @HUD(
         name = "Bedwars XP Display HUD",
