@@ -1,5 +1,6 @@
-**1.0.1**
+**1.0.2**
 
-- Fix state variables being persistently saved in HUD data 
+- Add customizable defusal helper color
+- Improve Bedwars XP and Magic Milk time hud logic
 
-"❌" - myself when I saw that state variables were being saved in HUD configs
+there is no message for this release, this is just self reflection.
