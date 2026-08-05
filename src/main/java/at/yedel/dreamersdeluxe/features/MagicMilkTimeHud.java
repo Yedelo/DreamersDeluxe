@@ -14,9 +14,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 public class MagicMilkTimeHud extends SingleTextHud {
-    private transient int magicMilkTime;
-    private transient int ticks;
-
     public MagicMilkTimeHud() {
         super(
             "Magic Milk", // title is actually useful now
@@ -37,33 +34,36 @@ public class MagicMilkTimeHud extends SingleTextHud {
         textType = 1;
     }
 
+    private transient long milkDrinkTime;
+
     @SubscribeEvent
     public void resetMagicMilkTime(PlayerUseItemEvent.Finish event) {
         if (event.item.getItem() == Items.milk_bucket && ServerLocation.getInstance().isInBedwars()) {
-            magicMilkTime = 30;
+            milkDrinkTime = System.nanoTime();
         }
-    }
-
-    @Subscribe
-    public void decrementMagicMilkTime(TickEvent event) {
-        if (event.stage == Stage.START) {
-            if (ticks % 20 == 0) {
-                magicMilkTime --;
-            }
-            ticks ++;
-        }
-    }
-
-    @Override
-    public boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && magicMilkTime > -1;
     }
 
     @Override
     protected String getText(boolean example) {
         if (example) return "§b25§as";
         else {
-            return "§b" + magicMilkTime + "§as";
+            return "§b" + getTimeRemaining() + "§as";
         }
     }
+
+    private double getTimeRemaining() {
+        return round(30 - (System.nanoTime() - milkDrinkTime) / 1_000_000_000D, 2);
+    }
+
+    // https://stackoverflow.com/a/22186845
+    private double round(double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
+    }
+
+    @Override
+    public boolean shouldShow() {
+        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && getTimeRemaining() > 0;
+    }
+
 }
