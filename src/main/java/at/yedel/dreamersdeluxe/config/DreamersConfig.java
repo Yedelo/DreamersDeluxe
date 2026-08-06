@@ -30,8 +30,8 @@ public class DreamersConfig extends Config {
     @Switch(
         title = "BedWars Defusal Helper",
         description = "Highlights redstone for the BedWars defusal challenge.",
-        category = "Gameplay",
-        subcategory = "Challenges"
+        category = "Challenges",
+        subcategory = "Gameplay"
     )
     public boolean bedwarsDefusalHelper = true;
 
@@ -39,8 +39,8 @@ public class DreamersConfig extends Config {
     @Color(
         title = "Defusal Helper Color",
         description = "The color of defusal helper redstone highlights.",
-        category = "Gameplay",
-        subcategory = "Challenges"
+        category = "Challenges",
+        subcategory = "Gameplay"
     )
     public int defusalHelperColor = -631202;
     
