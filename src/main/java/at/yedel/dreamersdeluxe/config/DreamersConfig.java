@@ -55,7 +55,6 @@ public class DreamersConfig extends Config {
             return UpdateSource.GITHUB;
         }
     }
-
     
     @Switch(
         name = "Automatically Check for Updates",
@@ -106,16 +105,16 @@ public class DreamersConfig extends Config {
     @Switch(
         name = "BedWars Defusal Helper",
         description = "Highlights redstone for the BedWars defusal challenge.",
-        category = "Gameplay",
-        subcategory = "Challenges"
+        category = "Challenges",
+        subcategory = "Gameplay"
     )
     public boolean bedwarsDefusalHelper = true;
 
     @Color(
         name = "Defusal Helper Color",
         description = "The color of defusal helper redstone highlights.",
-        category = "Gameplay",
-        subcategory = "Challenges",
+        category = "Challenges",
+        subcategory = "Gameplay",
         allowAlpha = false
     )
     public OneColor defusalHelperColor = new OneColor(246, 94, 94, 255);
