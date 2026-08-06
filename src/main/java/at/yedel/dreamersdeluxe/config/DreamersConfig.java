@@ -114,8 +114,7 @@ public class DreamersConfig extends Config {
         name = "Defusal Helper Color",
         description = "The color of defusal helper redstone highlights.",
         category = "Challenges",
-        subcategory = "Gameplay",
-        allowAlpha = false
+        subcategory = "Gameplay"
     )
     public OneColor defusalHelperColor = new OneColor(246, 94, 94, 255);
 
