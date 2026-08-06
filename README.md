@@ -23,7 +23,7 @@ To fix this, use system property `yedelmod.launch.local-mod-api-compatibility=fa
 
 ## Features
 
-<details><summary>Gameplay</summary>
+<details><summary>Challenges</summary>
 
 - BedWars Defusal Helper
 
