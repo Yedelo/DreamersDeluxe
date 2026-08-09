@@ -5,12 +5,15 @@ package at.yedel.dreamersdeluxe.features;
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
 
 import com.google.common.collect.ImmutableList;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.polyfrost.oneconfig.api.event.v1.events.ChatEvent;
 import org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 
@@ -34,7 +37,6 @@ public class ChatFilters {
         .add("You died while carrying x1 Comfy Pillows!")
         .build();
 
-    //@TODO ChatEvent.Receive doesn't work
     @Subscribe
     public void modifyBedwarsChat(ChatEvent.Receive event) {
         if (DreamersConfig.getInstance().enabled && ServerLocation.getInstance().isInBedwars()) {
@@ -48,9 +50,14 @@ public class ChatFilters {
                     event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().lightGreenTokenMessages) {
-                    //@TODO this does not work
-                    // event.message = new UTextComponent(event.message.getFormattedText().replace("§2", "§a"));
-                    event.setMessage(event.getMessage().replaceText(TextReplacementConfig.builder().matchLiteral("§2").replacement("§a").build()));
+                    // i can't be asked to figure out what is a getter and what is a setter and what is mutable and immutable so this works
+                    // this is a permanent solution and will not be changed
+                    Component newMessage = event.getMessage().children(
+                        event.getMessage().children().stream().map(
+                            (child) -> child.color(NamedTextColor.GREEN)
+                        ).collect(Collectors.toList())
+                    );
+                    event.setMessage(newMessage);
                 }
             }
 
@@ -63,8 +70,15 @@ public class ChatFilters {
                     event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().hideSilverCoinCount && message.contains("(+1 Silver Coin [")) {
-                    // event.message = new UTextComponent(message.substring(0, message.indexOf(" (+1 Silver Coin [")));
-                    event.setMessage(event.getMessage().replaceText(TextReplacementConfig.builder().matchLiteral(" (+1 Silver Coin [").replacement("").build()));
+                    // untested
+                    Component newMessage = event.getMessage().children(
+                        event.getMessage().children().stream().map(
+                            (child) -> child.replaceText(
+                                TextReplacementConfig.builder().matchLiteral(" (+1 Silver Coin [").replacement("").build()
+                            )
+                        ).collect(Collectors.toList())
+                    );
+                    event.setMessage(newMessage);
                 }
             }
 
