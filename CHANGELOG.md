@@ -1,7 +1,5 @@
-**1.0.4**
+**1.0.5**
 
-- Allow alpha in defusal helper color
-- Make challenges the category
+- Add a separate debug flag for always bedwars flag
 
-"big geeg" - lfsam
-"my message is: queenslink's mod is frunkle maxed" - Phobiotic
+"release me" - Basoo
