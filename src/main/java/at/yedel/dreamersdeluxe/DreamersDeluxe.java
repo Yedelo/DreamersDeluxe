@@ -33,8 +33,6 @@ public class DreamersDeluxe implements ClientModInitializer {
 	public void onInitializeClient() {
 		// Loads class. preload() exists for this but what ev
 		DreamersConfig.getInstance();
-		HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
-
 		ServerLocation.getInstance();
 		EventManager.INSTANCE.register(ChatFilters.getInstance());
         HudManager.register(new BedwarsXPHud(), new MagicMilkTimeHud());

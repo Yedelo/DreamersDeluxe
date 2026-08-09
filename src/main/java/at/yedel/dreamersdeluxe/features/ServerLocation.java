@@ -19,6 +19,7 @@ public class ServerLocation {
 
     private ServerLocation() {
         HypixelModAPI.getInstance().createHandler(ClientboundLocationPacket.class, this::handleLocationPacket);
+        HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
     }
 
     private void handleLocationPacket(ClientboundLocationPacket packet) {
@@ -26,7 +27,6 @@ public class ServerLocation {
     }
 
     public boolean isInBedwars() {
-        //@TODO make this return inBedwars when oneconfig fixes hypixel mod api
         return true;
     }
 }
