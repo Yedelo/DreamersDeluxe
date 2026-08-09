@@ -101,6 +101,13 @@ public class DreamersConfig extends Config {
     public void checkForUpdates() {
         UpdateManager.getInstance().checkForUpdates(getUpdateSource(), UpdateManager.FeedbackMethod.NOTIFICATIONS);
     }
+
+    @Switch(
+        name = "Debug Location Flag",
+        description = "Enable this flag to skip the BedWars server location check, always enabling every feature outside of the game.",
+        subcategory = "Debug"
+    )
+    public boolean debugLocationFlag = true;
     
     @Switch(
         name = "BedWars Defusal Helper",
