@@ -26,6 +26,13 @@ public class DreamersConfig extends Config {
         description = "Global toggle for the mod."
     )
     public boolean enabled = true;
+
+    @Switch(
+        title = "Debug Location Flag",
+        description = "Enable this flag to skip the BedWars server location check, always enabling every feature outside of the game.",
+        subcategory = "Debug"
+    )
+    public boolean debugLocationFlag = true;
     
     @Switch(
         title = "BedWars Defusal Helper",

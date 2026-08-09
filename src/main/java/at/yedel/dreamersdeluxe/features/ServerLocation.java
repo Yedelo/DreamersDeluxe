@@ -2,6 +2,7 @@ package at.yedel.dreamersdeluxe.features;
 
 
 
+import at.yedel.dreamersdeluxe.config.DreamersConfig;
 import net.hypixel.data.type.GameType;
 import net.hypixel.modapi.HypixelModAPI;
 import net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket;
@@ -27,6 +28,6 @@ public class ServerLocation {
     }
 
     public boolean isInBedwars() {
-        return true;
+        return DreamersConfig.getInstance().debugLocationFlag || inBedwars;
     }
 }
