@@ -4,6 +4,7 @@ package at.yedel.dreamersdeluxe.features;
 
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
@@ -20,7 +21,9 @@ public class BedwarsXPHud extends TextHud {
             return "§b3,550§7/§a5,000";
         }
         else {
-            float progress = Minecraft.getInstance().player.experienceProgress;
+            LocalPlayer player = Minecraft.getInstance().player;
+            if (player == null) return "";
+            float progress = player.experienceProgress;
             int xp = (int) (progress * 5000);
             return "§b" + commafy(xp) + "§7/§a5,000";
         }
