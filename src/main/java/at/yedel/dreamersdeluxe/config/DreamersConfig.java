@@ -2,6 +2,7 @@ package at.yedel.dreamersdeluxe.config;
 
 
 
+import at.yedel.dreamersdeluxe.DreamersDeluxe;
 import at.yedel.dreamersdeluxe.features.BedwarsXPHud;
 import at.yedel.dreamersdeluxe.features.MagicMilkTimeHud;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
@@ -84,7 +85,7 @@ public class DreamersConfig extends Config {
         text = "Open"
     )
     public void openModrinthLink() {
-        if (!UDesktop.browse(UpdateSource.MODRINTH.uri)) {
+        if (!UDesktop.browse(DreamersDeluxe.getInstance().getUpdateManager().getModrinthLink())) {
             Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open modrinth link!");
         }
     }
@@ -97,7 +98,7 @@ public class DreamersConfig extends Config {
         text = "Open"
     )
     public void openGitHubRepository() {
-        if (!UDesktop.browse(UpdateSource.GITHUB.uri)) {
+        if (!UDesktop.browse(DreamersDeluxe.getInstance().getUpdateManager().getGithubLink())) {
             Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open github link!");
         }
     }
@@ -111,7 +112,7 @@ public class DreamersConfig extends Config {
         size = 2
     )
     public void checkForUpdates() {
-        UpdateManager.getInstance().checkForUpdates(getUpdateSource(), UpdateManager.FeedbackMethod.NOTIFICATIONS);
+        DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(getUpdateSource(), UpdateManager.FeedbackMethod.NOTIFICATIONS);
     }
 
     @Switch(

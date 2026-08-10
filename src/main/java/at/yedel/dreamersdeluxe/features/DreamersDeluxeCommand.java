@@ -58,17 +58,17 @@ public class DreamersDeluxeCommand {
     public static class Update {
         @Main
         public void main() {
-            UpdateManager.getInstance().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), UpdateManager.FeedbackMethod.CHAT);
+            DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), UpdateManager.FeedbackMethod.CHAT);
         }
 
         @SubCommand
         public void modrinth() {
-            UpdateManager.getInstance().checkForUpdates(UpdateSource.MODRINTH, UpdateManager.FeedbackMethod.CHAT);
+            DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(UpdateSource.MODRINTH, UpdateManager.FeedbackMethod.CHAT);
         }
 
         @SubCommand
         public void github() {
-            UpdateManager.getInstance().checkForUpdates(UpdateSource.GITHUB, UpdateManager.FeedbackMethod.CHAT);
+            DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(UpdateSource.GITHUB, UpdateManager.FeedbackMethod.CHAT);
         }
     }
 }

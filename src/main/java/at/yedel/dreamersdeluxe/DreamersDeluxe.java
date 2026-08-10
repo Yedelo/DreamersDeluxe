@@ -42,6 +42,10 @@ public class DreamersDeluxe {
 
 	public static final Logger LOGGER = LogManager.getLogger("DreamersDeluxe");
 
+	private final UpdateManager updateManager = new UpdateManager(
+		"DreamersDeluxe", DreamersDeluxeConstants.MOD_VERSION, "dreamersdeluxe", "Yedelo/DreamersDeluxe", DreamersDeluxeConstants.LOGO
+	);
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		// Loads class. preload() exists for this but what ev
@@ -62,7 +66,7 @@ public class DreamersDeluxe {
 	@EventHandler
 	public void checkForUpdates(FMLLoadCompleteEvent event) {
 		if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().automaticallyCheckForUpdates) {
-			UpdateManager.getInstance().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), FeedbackMethod.NOTIFICATIONS);
+			updateManager.checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), FeedbackMethod.NOTIFICATIONS);
 		}
 	}
 
@@ -71,5 +75,9 @@ public class DreamersDeluxe {
 			MinecraftForge.EVENT_BUS.register(eventListener);
 			EventManager.INSTANCE.register(eventListener);
 		}
+	}
+
+	public UpdateManager getUpdateManager() {
+		return updateManager;
 	}
 }
