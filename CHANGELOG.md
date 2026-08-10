@@ -5,3 +5,5 @@
     - Usage can be found under `at.yedel.dreamersdeluxe.utils.update.UpdateManager`
 
 "I have Sell want seeing BeagleBoy123 500, the contact? arent r Plastic" - /fplanguage react word matcher:length>50
+"私はゲイかもしれないし、そうではないかもしれない。" - Dark36O
+"translate 私はゲイかもしれないし、そうではないかもしれない。 to english" - Yedel
