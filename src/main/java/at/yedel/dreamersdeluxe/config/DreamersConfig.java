@@ -23,6 +23,15 @@ public class DreamersConfig extends Config {
         return INSTANCE;
     }
 
+    private static transient final int RED_ARMOR_COLOR = 0xFF0000;
+    private static transient final int BLUE_ARMOR_COLOR = 0x0000FF;
+    private static transient final int GREEN_ARMOR_COLOR = 0x48CC18;
+    private static transient final int YELLOW_ARMOR_COLOR = 0xFFFF00;
+    private static transient final int AQUA_ARMOR_COLOR = 0x00FFFF;
+    private static transient final int WHITE_ARMOR_COLOR = 0xFFFFFF;
+    private static transient final int PINK_ARMOR_COLOR = 0xEF83A4;
+    private static transient final int GRAY_ARMOR_COLOR = 0x808080;
+
     private DreamersConfig() {
         super(
             new Mod(
@@ -36,6 +45,9 @@ public class DreamersConfig extends Config {
         );
         initialize();
         addDependency("defusalHelperColor", "bedwarsDefusalHelper");
+        for (String color: new String[] { "red", "blue", "green", "yellow", "aqua", "white", "pink", "gray" }) {
+            addDependency(color + "Color", "customArmorColors");
+        }
     }
     
     @Dropdown(
@@ -108,7 +120,111 @@ public class DreamersConfig extends Config {
         subcategory = "Debug"
     )
     public boolean debugLocationFlag = false;
-    
+
+    @Switch(
+        name = "Custom Armor Colors",
+        description = "Changes the color of leather armor for different teams.",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public boolean customArmorColors = false;
+
+    @Button(
+        name = "Reset Colors",
+        text = "Reset",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public Runnable resetColors = () -> {
+        redColor = new OneColor(RED_ARMOR_COLOR);
+        blueColor = new OneColor(BLUE_ARMOR_COLOR);
+        greenColor = new OneColor(GREEN_ARMOR_COLOR);
+        yellowColor = new OneColor(YELLOW_ARMOR_COLOR);
+        aquaColor = new OneColor(AQUA_ARMOR_COLOR);
+        whiteColor = new OneColor(WHITE_ARMOR_COLOR);
+        pinkColor = new OneColor(PINK_ARMOR_COLOR);
+        grayColor = new OneColor(GRAY_ARMOR_COLOR);
+        save();
+    };
+
+    @Color(
+        name = "Red Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor redColor = new OneColor(RED_ARMOR_COLOR);
+
+    @Color(
+        name = "Blue Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor blueColor = new OneColor(BLUE_ARMOR_COLOR);
+
+    @Color(
+        name = "Green Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor greenColor = new OneColor(GREEN_ARMOR_COLOR);
+
+    @Color(
+        name = "Yellow Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor yellowColor = new OneColor(YELLOW_ARMOR_COLOR);
+
+    @Color(
+        name = "Aqua Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor aquaColor = new OneColor(AQUA_ARMOR_COLOR);
+
+    @Color(
+        name = "White Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor whiteColor = new OneColor(WHITE_ARMOR_COLOR);
+
+    @Color(
+        name = "Pink Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor pinkColor = new OneColor(PINK_ARMOR_COLOR);
+
+    @Color(
+        name = "Gray Color",
+        category = "Gameplay",
+        subcategory = "Visual",
+        allowAlpha = false
+    )
+    public OneColor grayColor = new OneColor(GRAY_ARMOR_COLOR);
+
+    public int getCustomArmorColor(int original) {
+        switch (original) {
+            case RED_ARMOR_COLOR: return redColor.getRGB();
+            case BLUE_ARMOR_COLOR: return blueColor.getRGB();
+            case GREEN_ARMOR_COLOR: return greenColor.getRGB();
+            case YELLOW_ARMOR_COLOR: return yellowColor.getRGB();
+            case AQUA_ARMOR_COLOR: return aquaColor.getRGB();
+            case WHITE_ARMOR_COLOR: return whiteColor.getRGB();
+            case PINK_ARMOR_COLOR: return pinkColor.getRGB();
+            case GRAY_ARMOR_COLOR: return grayColor.getRGB();
+        }
+        return original;
+    }
+
     @Switch(
         name = "BedWars Defusal Helper",
         description = "Highlights redstone for the BedWars defusal challenge.",

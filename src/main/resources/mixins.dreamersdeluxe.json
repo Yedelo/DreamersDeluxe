@@ -3,7 +3,8 @@
   "package": "at.yedel.dreamersdeluxe.mixins",
   "client": [
     "AccessorGuiChest",
-    "MixinGuiContainer"
+    "MixinGuiContainer",
+    "MixinLayerArmorBase"
   ],
   "minVersion": "0.7.11"
 }
