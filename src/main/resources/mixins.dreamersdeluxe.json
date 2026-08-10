@@ -3,6 +3,7 @@
   "package": "at.yedel.dreamersdeluxe.mixins",
   "client": [
     "AbstractContainerScreenMixin",
+    "EquipmentLayerRendererMixin",
     "ItemStackMixin"
   ],
   "minVersion": "0.8"

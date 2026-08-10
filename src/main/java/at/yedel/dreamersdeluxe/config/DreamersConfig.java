@@ -2,11 +2,9 @@ package at.yedel.dreamersdeluxe.config;
 
 
 
+import org.polyfrost.compose.render.PolyColor;
 import org.polyfrost.oneconfig.api.config.v1.Config;
-import org.polyfrost.oneconfig.api.config.v1.annotations.Checkbox;
-import org.polyfrost.oneconfig.api.config.v1.annotations.Color;
-import org.polyfrost.oneconfig.api.config.v1.annotations.DependsOn;
-import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
+import org.polyfrost.oneconfig.api.config.v1.annotations.*;
 
 
 
@@ -21,6 +19,15 @@ public class DreamersConfig extends Config {
         super("dreamersdeluxe", "/assets/dreamersdeluxe/dreamersdeluxe.png", "DreamersDeluxe", Category.HYPIXEL);
     }
 
+    private static final int RED_ARMOR_COLOR = 0xFFFF0000;
+    private static final int BLUE_ARMOR_COLOR = 0xFF0000FF;
+    private static final int GREEN_ARMOR_COLOR = 0xFF48CC18;
+    private static final int YELLOW_ARMOR_COLOR = 0xFFFFFF00;
+    private static final int AQUA_ARMOR_COLOR = 0xFF00FFFF;
+    private static final int WHITE_ARMOR_COLOR = 0xFFFFFFFF;
+    private static final int PINK_ARMOR_COLOR = 0xFFEF83A4;
+    private static final int GRAY_ARMOR_COLOR = 0xFF808080;
+
     @Switch(
         title = "Enabled",
         description = "Global toggle for the mod."
@@ -33,6 +40,92 @@ public class DreamersConfig extends Config {
         subcategory = "Debug"
     )
     public boolean debugLocationFlag = false;
+
+    @Switch(
+        title = "Custom Armor Colors",
+        description = "Changes the color of leather armor for different teams.",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public boolean customArmorColors = false;
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Red Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor redColor = new PolyColor(RED_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Blue Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor blueColor = new PolyColor(BLUE_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Green Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor greenColor = new PolyColor(GREEN_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Yellow Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor yellowColor = new PolyColor(YELLOW_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Aqua Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor aquaColor = new PolyColor(AQUA_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "White Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor whiteColor = new PolyColor(WHITE_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Pink Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor pinkColor = new PolyColor(PINK_ARMOR_COLOR);
+
+    @DependsOn("customArmorColors")
+    @Color(
+        title = "Gray Color",
+        category = "Gameplay",
+        subcategory = "Visual"
+    )
+    public PolyColor grayColor = new PolyColor(GRAY_ARMOR_COLOR);
+
+    public int getCustomArmorColor(int original) {
+        switch (original) {
+            case RED_ARMOR_COLOR: return redColor.getArgb();
+            case BLUE_ARMOR_COLOR: return blueColor.getArgb();
+            case GREEN_ARMOR_COLOR: return greenColor.getArgb();
+            case YELLOW_ARMOR_COLOR: return yellowColor.getArgb();
+            case AQUA_ARMOR_COLOR: return aquaColor.getArgb();
+            case WHITE_ARMOR_COLOR: return whiteColor.getArgb();
+            case PINK_ARMOR_COLOR: return pinkColor.getArgb();
+            case GRAY_ARMOR_COLOR: return grayColor.getArgb();
+        }
+        return original;
+    }
     
     @Switch(
         title = "BedWars Defusal Helper",
