@@ -25,6 +25,12 @@ To fix this, use system property `yedelmod.launch.local-mod-api-compatibility=fa
 
 <details><summary>Gameplay</summary>
 
+- Custom Armor Colors
+
+</details>
+
+<details><summary>Challenges</summary>
+
 - BedWars Defusal Helper
 
 </details>
