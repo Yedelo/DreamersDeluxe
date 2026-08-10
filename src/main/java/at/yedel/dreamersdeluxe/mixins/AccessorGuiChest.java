@@ -12,5 +12,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(GuiChest.class)
 public interface AccessorGuiChest {
 	@Accessor("lowerChestInventory")
-	IInventory getLowerChestInventory();
+	IInventory dreamersdeluxe$getLowerChestInventory();
 }

@@ -32,7 +32,7 @@ public class DefusalHelper {
             if (stack == null) return;
             if (stack.getItem() != Items.redstone) return;
             if (!(container instanceof GuiChest)) return;
-            if (!Objects.equals(((AccessorGuiChest) container).getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) return;
+            if (!Objects.equals(((AccessorGuiChest) container).dreamersdeluxe$getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) return;
             UGraphics.GL.translate(0, 0, 1);
             Platform.getGLPlatform().drawRect(
                 slot.xDisplayPosition,
