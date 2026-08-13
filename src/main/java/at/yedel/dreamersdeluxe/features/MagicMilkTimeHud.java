@@ -3,6 +3,7 @@ package at.yedel.dreamersdeluxe.features;
 
 
 
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
@@ -24,7 +25,7 @@ public class MagicMilkTimeHud extends TextHud {
 
     @Override
     public String getText() {
-        if (!isReal()) return "§b25§as";
+        if (!isReal() || HudManager.INSTANCE.isEditing()) return "§b25§as";
         else {
             return "§b" + getTimeRemaining() + "§as";
         }

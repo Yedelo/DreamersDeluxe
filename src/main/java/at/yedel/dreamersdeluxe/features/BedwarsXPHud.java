@@ -5,6 +5,7 @@ package at.yedel.dreamersdeluxe.features;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
@@ -18,7 +19,7 @@ public class BedwarsXPHud extends TextHud {
 
     @Override
     protected String getText() {
-        if (!isReal()) {
+        if (!isReal() || HudManager.INSTANCE.isEditing()) {
             return "§b3,550§7/§a5,000";
         }
         else {
