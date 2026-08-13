@@ -1,3 +1,3 @@
-**1.0.6-beta**
+**1.0.7-beta.1**
 
-- Initial modern release
+- Add support for 26.2
