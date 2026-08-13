@@ -1,13 +1,20 @@
 val modDescription: String by project
 val license: String by project
-val fabricLoaderVersion: String by project
-val oneconfigVersion: String by project
-val fabricApiVersion: String by project
-val modMenuVersion: String by project
-
+val fabricLoaderVersion = sc.properties.get<String>("versions.fabricloader")
+val oneconfigVersion = sc.properties.get<String>("versions.oneconfig")
+val fabricApiVersion = sc.properties.get<String>("versions.fabricapi")
+val modMenuVersion = sc.properties.get<String>("versions.modmenu")
 val javaVersion = JavaVersion.VERSION_25
 
+val loader = sc.current.project.split("-")[1]
+val rangedVersion = sc.properties.get<String>("versioning") == "range"
+val maxMc = if (rangedVersion) sc.properties.get<String>("mc.max") else null
+
 repositories {
+    fun scopedMaven(url: String, vararg groups: String, includeSubgroups: Boolean = false) = maven(url) {
+        content { for (group in groups) if (!includeSubgroups) includeGroup(group) else includeGroupAndSubgroups(group) }
+    }
+
     mavenCentral()
     gradlePluginPortal()
     google()
@@ -16,6 +23,7 @@ repositories {
     maven("https://maven.terraformersmc.com/releases")
     maven("https://repo.hypixel.net/repository/Hypixel/")
     maven("https://maven.fabricmc.net/releases")
+    scopedMaven("https://central.sonatype.com/repository/maven-snapshots/", "net.kyori")
 }
 
 plugins {
@@ -57,8 +65,10 @@ tasks {
             register("version", version.toString())
             register("java", target(javaVersion.majorVersion))
             register("fabricLoader", target(fabricLoaderVersion))
-            val minecraftDependency = sc.current.version
+            val minecraftDependency =
+                if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
             register("minecraft", minecraftDependency)
+            register("oneconfigv1", target(oneconfigVersion))
         }
         filesMatching(listOf("fabric.mod.json")) { expand(props) }
 
@@ -68,9 +78,18 @@ tasks {
         outputs.upToDateWhen { false }
     }
 
+    register<Copy>("buildAndCollect") {
+        group = "build"
+
+        from(jar.map { it.archiveFile })
+        into(rootProject.layout.buildDirectory.file("libs"))
+        dependsOn("build")
+    }
 
     jar {
-        archiveFileName = "DreamersDeluxe-$version+${sc.current.project}.jar"
+        val minecraftTarget = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
+        val finalFileName = "DreamersDeluxe-$version+$minecraftTarget-$loader.jar"
+        archiveFileName = finalFileName
         manifest.attributes(
             mapOf(
                 "Main-Class" to "at.yedel.dreamersdeluxe.launch.DreamersDeluxeWindow"
