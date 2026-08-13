@@ -8,6 +8,7 @@ import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
 //@TODO hide this when not in bedwars or time remaining is below 0 seconds
+//@TODO color does not work properly
 public class MagicMilkTimeHud extends TextHud {
     public MagicMilkTimeHud() {
         super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk:", "");

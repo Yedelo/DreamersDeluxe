@@ -10,6 +10,7 @@ import org.polyfrost.oneconfig.api.hud.v1.TextHud;
 
 
 //@TODO hide this when not in bedwars
+//@TODO color does not work properly
 public class BedwarsXPHud extends TextHud {
     public BedwarsXPHud() {
         super("bedwars_xp_hud", "Bedwars XP Hud", Category.getINFO(), "XP:", "");
