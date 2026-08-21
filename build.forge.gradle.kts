@@ -1,4 +1,6 @@
 import dev.deftu.gradle.utils.GameSide
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.java
 
 val oneconfigVersion: String by project
 val oneconfigWrapperVersion: String by project

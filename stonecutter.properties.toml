@@ -1,0 +1,11 @@
+versions.fabricLoader = "0.19.3"
+
+["26.1-fabric"]
+versioning = "range"
+mc.max = "26.2"
+versions.fabricApi = "0.145.1+26.1"
+versions.modMenu = "18.0.0"
+versions.yacl = "3.9.4"
+
+["1.8.9-forge"]
+versioning = "single"

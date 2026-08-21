@@ -1,4 +1,6 @@
-rootProject.name = extra["mod.name"].toString()
+import kotlin.reflect.KProperty
+
+rootProject.name = "DreamersDeluxe"
 
 pluginManagement {
     repositories {
@@ -10,5 +12,28 @@ pluginManagement {
         maven("https://maven.architectury.dev")
         maven("https://maven.minecraftforge.net")
         maven("https://maven.deftu.dev/snapshots")
+        maven("https://maven.kikugie.dev/releases") { name = "KikuGie Releases" }
+        maven("https://maven.kikugie.dev/snapshots") { name = "KikuGie Snapshots" }
+    }
+}
+
+
+plugins {
+    id("dev.kikugie.stonecutter") version "0.10"
+    id("dev.kikugie.loom-back-compat") version "0.2"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+loomx.loomVersion = "1.16-SNAPSHOT"
+
+stonecutter {
+    create(rootProject) {
+        fun registerProject(versionString: String, loader: String) {
+            version("$versionString-$loader", versionString).buildscript("build.$loader.gradle.kts")
+        }
+
+        registerProject("26.1", "fabric")
+        registerProject("1.8.9", "forge")
+        vcsVersion = "26.1-fabric"
     }
 }
