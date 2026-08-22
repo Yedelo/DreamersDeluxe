@@ -28,6 +28,9 @@ repositories {
     maven("https://repo.hypixel.net/repository/Hypixel/")
     maven("https://maven.fabricmc.net/releases")
     scopedMaven("https://central.sonatype.com/repository/maven-snapshots/", "net.kyori")
+    maven("https://api.modrinth.com/maven") {
+        content { includeGroup("maven.modrinth") }
+    }
 }
 
 plugins {

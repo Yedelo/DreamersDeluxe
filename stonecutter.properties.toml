@@ -7,7 +7,7 @@ versioning = "range"
 mc.max = "26.2"
 versions.fabricapi = "0.145.1+26.1"
 versions.modmenu = "18.0.0"
-versions.oneconfig = "1.1.6"
+versions.oneconfig = "1.1.7"
 
 ["1.8.9-forge"]
 versioning = "single"
