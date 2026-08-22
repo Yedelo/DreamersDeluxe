@@ -41,6 +41,11 @@ dependencies {
     shadeOptionally("net.hypixel:mod-api-forge-tweaker:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
 }
 
+bloom {
+    replacement($$"${mixinJava}", "JAVA_8")
+    replacement($$"${mixinMin}", "0.7.11")
+}
+
 toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
@@ -58,6 +63,19 @@ toolkitLoomHelper {
 }
 
 tasks {
+    processResources {
+        exclude("fabric.mod.json")
+        outputs.upToDateWhen { false }
+    }
+
+    register<Copy>("buildAndCollect") {
+        group = "build"
+
+        from(jar.map { it.archiveFile })
+        into(rootProject.layout.buildDirectory.file("libs"))
+        dependsOn("build")
+    }
+
     jar {
         archiveFileName = "DreamersDeluxe-$version+${mcData}.jar"
         manifest.attributes(

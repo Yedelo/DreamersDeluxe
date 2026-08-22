@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "${mixinJava}",
   "package": "at.yedel.dreamersdeluxe.mixins",
   "client": [
     /*? if legacy {*//*
@@ -11,5 +11,5 @@
     "modern.ItemStackMixin"
     /*?}*/
   ],
-  "minVersion": "0.7.11"
+  "minVersion": "${mixinMin}"
 }
