@@ -3,67 +3,89 @@ package at.yedel.dreamersdeluxe;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ChatFilters;
-import at.yedel.dreamersdeluxe.features.DefusalHelper;
-import at.yedel.dreamersdeluxe.features.DreamersDeluxeCommand;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.features.*;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager.FeedbackMethod;
-import cc.polyfrost.oneconfig.events.EventManager;
-import cc.polyfrost.oneconfig.utils.commands.CommandManager;
+
+
 import net.hypixel.modapi.HypixelModAPI;
 import net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/*? if forge {*//*
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+*//*?}*/
+/*? else {*/
+import net.fabricmc.api.ClientModInitializer;
+/*?}*/
+/*? if v0 {*//*
+import cc.polyfrost.oneconfig.events.EventManager;
+import cc.polyfrost.oneconfig.utils.commands.CommandManager;
+*//*?} else {*/
+import org.polyfrost.oneconfig.api.commands.v1.CommandManager;
+import org.polyfrost.oneconfig.api.event.v1.EventManager;
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
+/*?}*/
 
 
 // Mod...
+/*? if forge {*//*
 @Mod(
 	modid = DreamersDeluxeConstants.MOD_ID,
 	name = DreamersDeluxeConstants.MOD_NAME,
 	version = DreamersDeluxeConstants.MOD_VERSION,
 	clientSideOnly = true
 )
-public class DreamersDeluxe {
-	@Instance
+*//*?}*/
+public class DreamersDeluxe /*? if fabric {*/ implements ClientModInitializer /*?}*/ {
+	public static final Logger LOGGER = LogManager.getLogger("DreamersDeluxe");
+
 	private static DreamersDeluxe INSTANCE;
 
 	public static DreamersDeluxe getInstance() {
 		return INSTANCE;
 	}
 
-	public static final Logger LOGGER = LogManager.getLogger("DreamersDeluxe");
+	public DreamersDeluxe() {
+		INSTANCE = this;
+	}
 
-	private final UpdateManager updateManager = new UpdateManager(
-		"DreamersDeluxe", DreamersDeluxeConstants.MOD_VERSION, "dreamersdeluxe", "Yedelo/DreamersDeluxe", DreamersDeluxeConstants.LOGO
-	);
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
+	private void initialize() {
 		// Loads class. preload() exists for this but what ev
 		DreamersConfig.getInstance();
-		HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
-		CommandManager.INSTANCE.registerCommand(DreamersDeluxeCommand.getInstance());
-
 		ServerLocation.getInstance();
+		/*? if v0 {*//*
 		registerEventListeners(
 			this,
-
 			ChatFilters.getInstance(),
 			DefusalHelper.getInstance(),
 			DreamersConfig.getInstance().magicMilkTimeHud
 		);
+		CommandManager.INSTANCE.registerCommand(DreamersDeluxeCommand.getInstance());
+		*//*?} else {*/
+		
+		EventManager.INSTANCE.register(ChatFilters.getInstance());
+		HudManager.register(new BedwarsXPHud(), new MagicMilkTimeHud());
+		CommandManager.register(DreamersDeluxeCommand.getInstance());
+		/*?}*/
 	}
 
-	@EventHandler
+	/*? if forge {*//*
+	private final UpdateManager updateManager = new UpdateManager(
+		"DreamersDeluxe", DreamersDeluxeConstants.MOD_VERSION, "dreamersdeluxe", "Yedelo/DreamersDeluxe", DreamersDeluxeConstants.LOGO
+	);
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		initialize();
+	}
+
+	@Mod.EventHandler
 	public void checkForUpdates(FMLLoadCompleteEvent event) {
 		if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().automaticallyCheckForUpdates) {
 			updateManager.checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), FeedbackMethod.NOTIFICATIONS);
@@ -80,4 +102,11 @@ public class DreamersDeluxe {
 	public UpdateManager getUpdateManager() {
 		return updateManager;
 	}
+	*//*?} else {*/
+	public void onInitializeClient() {
+		initialize();
+	}
+	/*?}*/
 }
+
+

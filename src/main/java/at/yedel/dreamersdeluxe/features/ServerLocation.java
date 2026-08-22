@@ -20,6 +20,7 @@ public class ServerLocation {
 
     private ServerLocation() {
         HypixelModAPI.getInstance().registerHandler(ClientboundLocationPacket.class, this::handleLocationPacket);
+        HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
     }
 
     private void handleLocationPacket(ClientboundLocationPacket packet) {
