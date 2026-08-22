@@ -15,6 +15,7 @@ stonecutter parameters {
     val v0 = properties.getAs<String>("versions.oneconfig").startsWith("0")
     val v1 = !v0
     val modern = current.parsed >= "26.1"
+
     constants {
         match(loader, "forge", "fabric")
         this["v0"] = v0
@@ -24,7 +25,10 @@ stonecutter parameters {
 
     replacements {
         string(v1, "oneconfig_bridge") {
-
+            replace("name =", "title =")
+            replace("allowAlpha", "alpha")
+            replace("OneColor", "PolyColor")
+            replace("getRGB", "getArgb")
         }
         string(current.parsed >= "1.21.11") {
             replace("ResourceLocation", "Identifier")
