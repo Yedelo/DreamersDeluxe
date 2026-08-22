@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.utils;
 
 
@@ -55,3 +56,4 @@ public class Requests {
 		return GSON.fromJson(new InputStreamReader(openURLConnection(url).getInputStream(), StandardCharsets.UTF_8), JsonObject.class);
 	}
 }
+*//*?}*/

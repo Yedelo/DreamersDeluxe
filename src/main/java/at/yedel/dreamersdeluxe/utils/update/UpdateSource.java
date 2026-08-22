@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.utils.update;
 
 
@@ -18,3 +19,4 @@ public enum UpdateSource {
 		this.name = UTextComponent.Companion.stripFormatting(coloredName);
 	}
 }
+*//*?}*/

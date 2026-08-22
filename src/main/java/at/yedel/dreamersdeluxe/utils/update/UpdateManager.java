@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.utils.update;
 
 
@@ -145,3 +146,4 @@ public class UpdateManager {
 		NOTIFICATIONS
 	}
 }
+*//*?}*/
