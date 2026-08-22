@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.launch;
 
 
@@ -21,9 +22,9 @@ import java.util.jar.JarFile;
 
 
 
-/**
+/^*
  * Loads the OneConfig wrapper tweaker and loads the Hypixel Mod API.
- */
+ ^/
 public class DreamersDeluxeTweaker implements ITweaker {
     public static final Logger DIARY = LogManager.getLogger("DreamersDeluxeTweaker");
     @SuppressWarnings("unchecked")
@@ -46,11 +47,11 @@ public class DreamersDeluxeTweaker implements ITweaker {
         }
     }
 
-    /**
+    /^*
      * Searches for a possible local copy of the Hypixel Mod API, and if found,
      * queues the {@link at.yedel.dreamersdeluxe.launch.LocalCopyCompatibilityTweaker} to handle version conflicts.
      * More information on this issue can be found in the tweaker class.
-     */
+     ^/
     private void handleLocalModAPI(File gameDir) {
         FilenameFilter jarFilter = (dir, name) -> name.endsWith(".jar");
 
@@ -118,3 +119,4 @@ public class DreamersDeluxeTweaker implements ITweaker {
     @Override
     public String[] getLaunchArguments() {return new String[0];}
 }
+*//*?}*/

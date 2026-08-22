@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.launch;
 
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 
 
-/**
+/^*
  * Having both a file version and tweaker-bundled version of the Hypixel Mod API
  * cause the game to collapse under {@link net.minecraftforge.fml.common.DuplicateModsFoundException}.
  * This tweaker acts on behalf of the file version, if it exists,
@@ -26,7 +27,7 @@ import java.util.List;
  * <p>
  * Taken from <a href="https://github.com/HypixelDev/ForgeModAPI/blob/master/tweaker/src/main/java/net/hypixel/modapi/tweaker/HypixelModAPITweaker.java">HypixelModAPITweaker</a>,
  * adapted for compatibility.
- */
+ ^/
 public class LocalCopyCompatibilityTweaker implements ITweaker {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final File file;
@@ -121,3 +122,4 @@ public class LocalCopyCompatibilityTweaker implements ITweaker {
         return new String[0];
     }
 }
+*//*?}*/

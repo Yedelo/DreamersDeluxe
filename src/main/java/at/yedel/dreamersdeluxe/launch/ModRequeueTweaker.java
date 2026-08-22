@@ -1,3 +1,4 @@
+/*? if forge {*//*
 package at.yedel.dreamersdeluxe.launch;
 
 
@@ -15,13 +16,13 @@ import java.util.Objects;
 
 
 
-/**
+/^*
  * The mod requeue tweaker makes sure that we are recognized as a Forge Mod, despite having a Tweaker.
  * We also add ourselves as a mixin container for integration with other mixin loaders.
  * <p>
  * Taken from <a href="https://github.com/jani270/SkyHanni/blob/71a4f3a513c8b8464670a3669a5a1ee2687d8030/src/main/java/at/hannibal2/skyhanni/tweaker/ModLoadingTweaker.java#L20">...</a>
  * which took it from <a href="https://github.com/NotEnoughUpdates/NotEnoughUpdates/blob/20821e63057add096e314310ea8fa8e0c411e964/src/main/java/io/github/moulberry/notenoughupdates/loader/ModLoadingTweaker.java">...</a>
- */
+ ^/
 public class ModRequeueTweaker implements ITweaker {
     @Override
     public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile) {
@@ -55,3 +56,4 @@ public class ModRequeueTweaker implements ITweaker {
         return new String[0];
     }
 }
+*//*?}*/
