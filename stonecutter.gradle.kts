@@ -24,12 +24,17 @@ stonecutter parameters {
     }
 
     replacements {
-        string(v1, "oneconfig_bridge") {
+        string(v1, "config_bridge") {
             replace("name =", "title =")
             replace("allowAlpha", "alpha")
             replace("OneColor", "PolyColor")
             replace("getRGB", "getArgb")
         }
+
+        string(v1, "chat") {
+            replace("UChat.chat", "Platform.compatibility().displayChatMessage")
+        }
+
         string(current.parsed >= "1.21.11") {
             replace("ResourceLocation", "Identifier")
         }

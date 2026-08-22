@@ -29,7 +29,7 @@ import org.polyfrost.oneconfig.api.notifications.v1.Notifications;
 /*?}*/
 
 
-//~ oneconfig_bridge
+//~ config_bridge
 public class DreamersConfig extends Config {
     private static final DreamersConfig INSTANCE = new DreamersConfig();
 

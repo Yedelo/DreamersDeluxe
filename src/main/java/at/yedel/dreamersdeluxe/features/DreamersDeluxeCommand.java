@@ -7,22 +7,29 @@ package at.yedel.dreamersdeluxe.features;
 import at.yedel.dreamersdeluxe.DreamersDeluxe;
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
+/*? if forge {*//*
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
 import at.yedel.dreamersdeluxe.utils.update.UpdateSource;
-import cc.polyfrost.oneconfig.libs.universal.ChatColor;
+*//*?}*/
+/*? if v0 {*//*
 import cc.polyfrost.oneconfig.libs.universal.UChat;
 import cc.polyfrost.oneconfig.utils.commands.annotations.Command;
 import cc.polyfrost.oneconfig.utils.commands.annotations.Main;
 import cc.polyfrost.oneconfig.utils.commands.annotations.SubCommand;
 import cc.polyfrost.oneconfig.utils.commands.annotations.SubCommandGroup;
+*//*?} else {*/
+import org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Command;
+import org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Handler;
+import org.polyfrost.oneconfig.api.platform.v1.Platform;
+import org.polyfrost.oneconfig.utils.v1.dsl.ScreensKt;
+/*?}*/
 
 import java.lang.reflect.Field;
 
-
+//~ chat
 @Command(
     value = "dreamersdeluxe",
-    description = "The main command of DreamersDeluxe",
-    chatColor = ChatColor.BLUE
+    description = "The main command of DreamersDeluxe"
 )
 public class DreamersDeluxeCommand {
     private static final DreamersDeluxeCommand INSTANCE = new DreamersDeluxeCommand();
@@ -33,30 +40,38 @@ public class DreamersDeluxeCommand {
 
     private DreamersDeluxeCommand() {}
 
-    @Main(
+    //~ if v1 '@Main' -> '@Handler'
+    @Handler(
         description = "The main command, hosting all subcommands. When used with no arguments, opens the config screen."
     )
     public void main() {
+        /*? if v0 {*//*
         DreamersConfig.getInstance().openGui();
+        *//*?} else {*/
+        ScreensKt.openUI(DreamersConfig.getInstance());
+        /*?}*/
     }
 
-    @SubCommand(description = "Shows mod constants and build information such as the project version.")
+    //~ if v1 '@SubCommand' -> '@Handler' {
+    @Handler(description = "Shows mod constants and build information such as the project version.")
     public void constants() {
         try {
-            UChat.chat(DreamersDeluxeConstants.LOGO + " §eConstants:");
+            Platform.compatibility().displayChatMessage(DreamersDeluxeConstants.LOGO + " §eConstants:");
             for (Field field : DreamersDeluxeConstants.class.getDeclaredFields()) {
-                UChat.chat(DreamersDeluxeConstants.LOGO + " " + field.getName() + ": §r" + field.get(null));
+                Platform.compatibility().displayChatMessage(DreamersDeluxeConstants.LOGO + " " + field.getName() + ": §r" + field.get(null));
             }
         }
         catch (IllegalAccessException e) {
-            UChat.chat( DreamersDeluxeConstants.LOGO + " §cCouldn't get mod constants!");
+            Platform.compatibility().displayChatMessage(DreamersDeluxeConstants.LOGO + " §cCouldn't get mod constants!");
             DreamersDeluxe.LOGGER.error("Couldn't get mod constants!", e);
         }
     }
+    //~}
 
+    /*? if forge {*//*
     @SubCommandGroup("update")
     public static class Update {
-        @Main
+        @SubCommand
         public void main() {
             DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), UpdateManager.FeedbackMethod.CHAT);
         }
@@ -71,4 +86,5 @@ public class DreamersDeluxeCommand {
             DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(UpdateSource.GITHUB, UpdateManager.FeedbackMethod.CHAT);
         }
     }
+    *//*?}*/
 }
