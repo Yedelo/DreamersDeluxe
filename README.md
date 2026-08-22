@@ -10,16 +10,7 @@
 
 Use /dreamersdeluxe for settings and more info.
 
-Use /dreamersdeluxe update or the check for update button in the settings menu to check for updates on Modrinth or GitHub.
-
-## Dependency Information
-
-| **Mod versions** | **Powered by**                                           | **[Hypixel Mod API](https://github.com/HypixelDev/ModAPI)** |
-|------------------|----------------------------------------------------------|-------------------------------------------------------------|
-| 1.0.0+           | [OneConfig](https://polyfrost.org/projects/oneconfig) v0 | ✅ (bundled via tweaker)                                     |
-
-Note: This mod conflicts with YedelMod <2.4.0 because of local Hypixel Mod API compatibility.
-To fix this, use system property `yedelmod.launch.local-mod-api-compatibility=false` or `dreamersdeluxe.launch.local-mod-api-compatibility=false`
+Use /dreamersdeluxe update on Forge to check for mod updates.
 
 ## Features
 
