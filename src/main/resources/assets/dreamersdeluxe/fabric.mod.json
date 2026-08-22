@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "name": "DreamersDeluxe",
+  "id": "dreamersdeluxe",
+  "description": "${description}",
+  "version": "${version}",
+  "authors": [
+    "Yedel"
+  ],
+  "license": "${license}",
+  "icon": "assets/dreamersdeluxe/dreamersdeluxe.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "at.yedel.dreamersdeluxe.DreamersDeluxe"
+    ]
+  },
+  "mixins": [
+    "mixins.dreamersdeluxe.json5"
+  ],
+  "depends": {
+    "java": "${java}",
+    "fabricloader": "${fabricLoader}",
+    "minecraft": "${minecraft}",
+    "oneconfigv1": "${oneconfigv1}",
+    "fabric-api": "*"
+  },
+  "recommends": {
+    "modmenu": "*"
+  },
+  "contact": {
+    "homepage": "https://modrinth.com/mod/dreamersdeluxe",
+    "issues": "https://github.com/Yedelo/DreamersDeluxe/issues",
+    "sources": "https://github.com/Yedelo/DreamersDeluxe"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.github_releases": "https://github.com/Yedelo/DreamersDeluxe/releases/",
+        "modmenu.modrinth": "https://modrinth.com/mod/dreamersdeluxe"
+      }
+    }
+  }
+}
