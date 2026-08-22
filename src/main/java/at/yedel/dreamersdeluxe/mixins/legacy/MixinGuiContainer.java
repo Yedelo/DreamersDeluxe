@@ -1,8 +1,9 @@
-/*? if forge {*//*
+/*? if legacy {*//*
 package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
+import at.yedel.dreamersdeluxe.features.ServerLocation;
 import cc.polyfrost.oneconfig.libs.universal.UGraphics;
 import cc.polyfrost.oneconfig.platform.Platform;
 import net.minecraft.client.gui.inventory.GuiChest;
@@ -23,12 +24,10 @@ import java.util.Objects;
 public abstract class MixinGuiContainer {
 	@Inject(method = "drawSlot", at = @At("HEAD"))
 	public void dreamersdeluxe$renderRedstoneHighlights(Slot slot, CallbackInfo ci) {
-		if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().bedwarsDefusalHelper) {
+		if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().bedwarsDefusalHelper && ServerLocation.getInstance().isInBedwars()) {
 			ItemStack stack = slot.getStack();
 			if (stack == null) return;
 			if (stack.getItem() != Items.redstone) return;
-			if (!((GuiContainer) (Object) this instanceof GuiChest)) return;
-			if (!Objects.equals(((AccessorGuiChest) this).dreamersdeluxe$getLowerChestInventory().getName(), "§cC4 (Click §4§lREDSTONE§c)")) return;
 			UGraphics.GL.translate(0, 0, 1);
 			Platform.getGLPlatform().drawRect(
 				slot.xDisplayPosition,

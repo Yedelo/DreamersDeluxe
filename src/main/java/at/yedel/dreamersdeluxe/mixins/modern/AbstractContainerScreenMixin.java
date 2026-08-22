@@ -25,16 +25,12 @@ import java.util.Objects;
 
 @Mixin(AbstractContainerScreen.class)
 public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMenu> {
-    @Unique
-    private static final String dreamersdeluxe$defusalWindowTitle = "C4 (Click REDSTONE)";
-
     @Inject(method = "extractSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;item(Lnet/minecraft/world/item/ItemStack;III)V"))
     private void dreamersdeluxe$handleSlotRendering(GuiGraphicsExtractor graphics, Slot slot, int mouseX, int mouseY, CallbackInfo ci) {
         if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().bedwarsDefusalHelper && ServerLocation.getInstance().isInBedwars()) {
             ItemStack stack = slot.getItem();
             if (stack == null) return;
             if (stack.getItem() != Items.REDSTONE) return;
-            if (!Objects.equals(ChatFormatting.stripFormatting(((AbstractContainerScreen<ChestMenu>) (Object) this).getTitle().getString()), dreamersdeluxe$defusalWindowTitle)) return;
             graphics.pose().pushMatrix();
             graphics.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, DreamersConfig.getInstance().defusalHelperColor.getArgb());
             graphics.pose().popMatrix();

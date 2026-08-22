@@ -3,7 +3,6 @@
   "package": "at.yedel.dreamersdeluxe.mixins",
   "client": [
     /*? if legacy {*//*
-    "legacy.AccessorGuiChest",
     "legacy.MixinGuiContainer",
     "legacy.MixinLayerArmorBase"
     *//*?} else {*/
