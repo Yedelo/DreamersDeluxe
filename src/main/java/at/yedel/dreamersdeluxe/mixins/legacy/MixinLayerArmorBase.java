@@ -1,4 +1,5 @@
-package at.yedel.dreamersdeluxe.mixins;
+/*? if forge {*//*
+package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
 
@@ -24,3 +25,4 @@ public abstract class MixinLayerArmorBase {
         return original;
     }
 }
+*//*?}*/

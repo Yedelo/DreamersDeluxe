@@ -1,0 +1,16 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "at.yedel.dreamersdeluxe.mixins",
+  "client": [
+    /*? if legacy {*//*
+    "legacy.AccessorGuiChest",
+    "legacy.MixinGuiContainer",
+    "legacy.MixinLayerArmorBase"
+    *//*?} else {*/
+    "modern.AbstractContainerScreenMixin",
+    "modern.EquipmentLayerRendererMixin",
+    "modern.ItemStackMixin"
+    /*?}*/
+  ],
+  "minVersion": "0.7.11"
+}

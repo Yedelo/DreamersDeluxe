@@ -1,4 +1,5 @@
-package at.yedel.dreamersdeluxe.mixins;
+/*? if forge {*//*
+package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
 
@@ -14,3 +15,4 @@ public interface AccessorGuiChest {
 	@Accessor("lowerChestInventory")
 	IInventory dreamersdeluxe$getLowerChestInventory();
 }
+*//*?}*/

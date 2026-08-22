@@ -45,8 +45,8 @@ toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
     useTweaker("at.yedel.dreamersdeluxe.launch.DreamersDeluxeTweaker")
-    useForgeMixin("dreamersdeluxe")
-    useMixinRefMap("dreamersdeluxe")
+    useForgeMixin("mixins.dreamersdeluxe.json5", true)
+    useMixinRefMap("mixins.dreamersdeluxe.refmap.json5", true)
 
     useDevAuth(sc.properties.getAs<String>("versions.devauth"))
     useArgument("--version", "DreamersDeluxe", GameSide.BOTH)

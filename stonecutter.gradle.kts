@@ -14,12 +14,14 @@ stonecutter parameters {
     val loader = current.project.split("-")[1]
     val v0 = properties.getAs<String>("versions.oneconfig").startsWith("0")
     val v1 = !v0
-    val modern = current.parsed >= "26.1"
+    val legacy = current.parsed <= "1.8.9"
+    val modern = !legacy
 
     constants {
         match(loader, "forge", "fabric")
         this["v0"] = v0
         this["v1"] = v1
+        this["legacy"] = legacy
         this["modern"] = modern
     }
 

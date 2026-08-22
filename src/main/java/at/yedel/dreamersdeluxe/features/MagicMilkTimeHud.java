@@ -36,10 +36,16 @@ public class MagicMilkTimeHud extends SingleTextHud {
 
     private transient long milkDrinkTime;
 
-    @SubscribeEvent
-    public void resetMagicMilkTime(PlayerUseItemEvent.Finish event) {
-        if (event.item.getItem() == Items.milk_bucket && ServerLocation.getInstance().isInBedwars()) {
+    public void handleMilk() {
+        if (ServerLocation.getInstance().isInBedwars()) {
             milkDrinkTime = System.nanoTime();
+        }
+    }
+
+    @SubscribeEvent
+    public void onItemUse(PlayerUseItemEvent.Finish event) {
+        if (event.item.getItem() == Items.milk_bucket) {
+            handleMilk();
         }
     }
 
@@ -65,5 +71,4 @@ public class MagicMilkTimeHud extends SingleTextHud {
     public boolean shouldShow() {
         return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && getTimeRemaining() > 0;
     }
-
 }
