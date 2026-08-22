@@ -40,8 +40,11 @@ stonecutter parameters {
     }
 
     val yaclVersion by Declare(run {
-        val rawVersionProperty = properties.get<String>("versions.yacl")
-        if (rawVersionProperty.endsWith(loader)) rawVersionProperty else "$rawVersionProperty+${current.project}"
+        if (!properties.contains("versions.yacl")) null
+        else {
+            val rawVersionProperty = properties.getAs<String>("versions.yacl")
+            if (rawVersionProperty.endsWith(loader)) rawVersionProperty else "$rawVersionProperty+${current.project}"
+        }
     })
 
     val javaVersion by Declare(run {
@@ -55,8 +58,8 @@ stonecutter parameters {
         }
     })
 
-    val rangedVersion by Declare(properties.get<String>("versioning") == "range")
-    val maxMc by Declare(if (rangedVersion) properties.get<String>("mc.max") else null)
+    val rangedVersion by Declare(properties.getAs<String>("versioning") == "range")
+    val maxMc by Declare(if (rangedVersion) properties.getAs<String>("mc.max") else null)
 
     val minecraftTarget by Declare(if (rangedVersion) "${current.version}-$maxMc" else current.version)
     val finalFileName by Declare("DreamersDeluxe-$version+$minecraftTarget-$loader.jar")

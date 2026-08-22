@@ -2,12 +2,8 @@ import dev.deftu.gradle.utils.GameSide
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.java
 
-val oneconfigVersion: String by project
-val oneconfigWrapperVersion: String by project
-val modApiVersion: String by project
-val devAuthVersion: String by project
-
 version = properties["mod.version"]!!
+
 
 repositories {
     gradlePluginPortal()
@@ -36,12 +32,12 @@ configurations.named("implementation") {
 }
 
 dependencies {
-    shadeOptionally("cc.polyfrost:oneconfig-wrapper-launchwrapper:$oneconfigWrapperVersion")
-    compileOnly("cc.polyfrost:oneconfig-${mcData.version}-${mcData.loader}:$oneconfigVersion")
+    shadeOptionally("cc.polyfrost:oneconfig-wrapper-launchwrapper:${sc.properties.getAs<String>("versions.oneconfigwrapper")}")
+    compileOnly("cc.polyfrost:oneconfig-${mcData.version}-${mcData.loader}:${sc.properties.getAs<String>("versions.oneconfig")}")
     compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
 
-    modImplementation("net.hypixel:mod-api-forge:$modApiVersion")
-    shadeOptionally("net.hypixel:mod-api-forge-tweaker:$modApiVersion")
+    modImplementation("net.hypixel:mod-api-forge:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
+    shadeOptionally("net.hypixel:mod-api-forge-tweaker:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
 }
 
 toolkitLoomHelper {
@@ -51,7 +47,7 @@ toolkitLoomHelper {
     useForgeMixin("dreamersdeluxe")
     useMixinRefMap("dreamersdeluxe")
 
-    useDevAuth(devAuthVersion)
+    useDevAuth(sc.properties.getAs<String>("versions.devauth"))
     useArgument("--version", "DreamersDeluxe", GameSide.BOTH)
     val resourcePackDir: String? = System.getenv("minecraft.resourcePackDir")
     if (!resourcePackDir.isNullOrBlank()) {

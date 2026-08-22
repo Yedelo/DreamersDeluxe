@@ -4,15 +4,15 @@ import org.gradle.kotlin.dsl.invoke
 
 val modDescription: String by project
 val license: String by project
-val fabricLoaderVersion = sc.properties.get<String>("versions.fabricloader")
-val oneconfigVersion = sc.properties.get<String>("versions.oneconfig")
-val fabricApiVersion = sc.properties.get<String>("versions.fabricapi")
-val modMenuVersion = sc.properties.get<String>("versions.modmenu")
+val fabricLoaderVersion = sc.properties.getAs<String>("versions.fabricloader")
+val oneconfigVersion = sc.properties.getAs<String>("versions.oneconfig")
+val fabricApiVersion = sc.properties.getAs<String>("versions.fabricapi")
+val modMenuVersion = sc.properties.getAs<String>("versions.modmenu")
 val javaVersion = JavaVersion.VERSION_25
 
 val loader = sc.current.project.split("-")[1]
-val rangedVersion = sc.properties.get<String>("versioning") == "range"
-val maxMc = if (rangedVersion) sc.properties.get<String>("mc.max") else null
+val rangedVersion = sc.properties.getAs<String>("versioning") == "range"
+val maxMc = if (rangedVersion) sc.properties.getAs<String>("mc.max") else null
 
 repositories {
     fun scopedMaven(url: String, vararg groups: String, includeSubgroups: Boolean = false) = maven(url) {

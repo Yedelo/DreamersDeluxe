@@ -1,11 +1,18 @@
-versions.fabricLoader = "0.19.3"
+versions.fabricloader = "0.19.3"
+versions.devauth = "1.2.2"
+license = "LGPL-3.0-only"
 
 ["26.1-fabric"]
 versioning = "range"
 mc.max = "26.2"
-versions.fabricApi = "0.145.1+26.1"
-versions.modMenu = "18.0.0"
-versions.yacl = "3.9.4"
+versions.fabricapi = "0.145.1+26.1"
+versions.modmenu = "18.0.0"
+versions.oneconfig = "1.1.6"
 
 ["1.8.9-forge"]
 versioning = "single"
+versions.oneconfig = "0.2.2-alpha+"
+versions.oneconfigwrapper = "1.0.0-beta+"
+versions.hypixelmodapi = "1.0.1.2"
+
+
