@@ -33,6 +33,12 @@ stonecutter parameters {
             replace("getRGB", "getArgb")
         }
 
+        string(v1, "texthud_bridge") {
+            replace("SingleTextHud", "TextHud")
+            replace("protected String getText(boolean example)", "protected String getText()")
+            replace("example", "!isReal() || HudManager.INSTANCE.isEditing()")
+        }
+
         string(v1, "chat") {
             replace("UChat.chat", "Platform.compatibility().displayChatMessage")
         }

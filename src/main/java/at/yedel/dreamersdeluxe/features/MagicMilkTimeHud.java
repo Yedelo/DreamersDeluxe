@@ -2,19 +2,28 @@ package at.yedel.dreamersdeluxe.features;
 
 
 
+
+/*? if v0 {*//*
 import at.yedel.dreamersdeluxe.utils.Constants;
-import cc.polyfrost.oneconfig.events.event.Stage;
-import cc.polyfrost.oneconfig.events.event.TickEvent;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
-import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
-import net.minecraft.init.Items;
+*//*?} else {*/
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
+import org.polyfrost.oneconfig.api.hud.v1.TextHud;
+/*?}*/
+/*? if forge {*//*
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+*//*?}*/
+/*? if legacy {*//*
+import net.minecraft.init.Items;
+*//*?}*/
 
 
 
-public class MagicMilkTimeHud extends SingleTextHud {
+//~ texthud_bridge
+public class MagicMilkTimeHud extends TextHud {
     public MagicMilkTimeHud() {
+        /*? if v0 {*//*
         super(
             "Magic Milk", // title is actually useful now
             true, // enabled obviously
@@ -32,6 +41,9 @@ public class MagicMilkTimeHud extends SingleTextHud {
             Constants.EMPTY_COLOR // no border color
         );
         textType = 1;
+        *//*?} else {*/
+        super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk:", "");
+        /*?}*/
     }
 
     private transient long milkDrinkTime;
@@ -42,16 +54,18 @@ public class MagicMilkTimeHud extends SingleTextHud {
         }
     }
 
+    /*? if forge {*//*
     @SubscribeEvent
     public void onItemUse(PlayerUseItemEvent.Finish event) {
         if (event.item.getItem() == Items.milk_bucket) {
             handleMilk();
         }
     }
+    *//*?}*/
 
     @Override
-    protected String getText(boolean example) {
-        if (example) return "§b25§as";
+    protected String getText() {
+        if (!isReal() || HudManager.INSTANCE.isEditing()) return "§b25§as";
         else {
             return "§b" + getTimeRemaining() + "§as";
         }
@@ -67,8 +81,10 @@ public class MagicMilkTimeHud extends SingleTextHud {
         return (double) Math.round(value * scale) / scale;
     }
 
+    /*? if v0 {*//*
     @Override
     public boolean shouldShow() {
         return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && getTimeRemaining() > 0;
     }
+    *//*?}*/
 }

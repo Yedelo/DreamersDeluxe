@@ -5,16 +5,12 @@ package at.yedel.dreamersdeluxe;
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
 import at.yedel.dreamersdeluxe.features.*;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager.FeedbackMethod;
-
-
-import net.hypixel.modapi.HypixelModAPI;
-import net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /*? if forge {*//*
+import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
+import at.yedel.dreamersdeluxe.utils.update.UpdateManager.FeedbackMethod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

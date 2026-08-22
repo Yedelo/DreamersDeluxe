@@ -1,4 +1,4 @@
-/*? if forge {*//*
+/*? if legacy {*//*
 package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
