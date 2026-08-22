@@ -3,13 +3,22 @@ package at.yedel.dreamersdeluxe.features;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
+
+/*? if v0 {*//*
 import cc.polyfrost.oneconfig.events.event.ChatReceiveEvent;
 import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
 import cc.polyfrost.oneconfig.libs.universal.wrappers.message.UTextComponent;
+*//*?} else {*/
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.polyfrost.oneconfig.api.event.v1.events.ChatEvent;
+import org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe;
+/*?}*/
 import com.google.common.collect.ImmutableList;
-
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 
@@ -32,21 +41,37 @@ public class ChatFilters {
         .add("You cannot carry any more Comfy Pillows!")
         .add("You died while carrying x1 Comfy Pillows!")
         .build();
-
+    //~if v1 'ChatReceiveEvent' -> 'ChatEvent.Receive' {
+    //~if v1 'isCancelled' -> 'cancelled' {
     @Subscribe
-    public void modifyBedwarsChat(ChatReceiveEvent event) {
+    public void modifyBedwarsChat(ChatEvent.Receive event) {
         if (DreamersConfig.getInstance().enabled && ServerLocation.getInstance().isInBedwars()) {
+            /*? if v0 {*//*
             String message = UTextComponent.Companion.stripFormatting(event.message.getUnformattedText());
+            *//*?} else {*/
+            String message = event.getFullyUnformattedMessage();
+            /*?}*/
 
             if (DreamersConfig.getInstance().hideTokenMessages && Objects.equals(message, "Tokens just earned DOUBLED as a Guild Level Reward!")) {
-                event.isCancelled = true;
+                event.cancelled = true;
             }
             if (TOKEN_MESSAGE_PATTERN.matcher(message).find()) {
                 if (DreamersConfig.getInstance().hideTokenMessages) {
-                    event.isCancelled = true;
+                    event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().lightGreenTokenMessages) {
+                    /*? if v0 {*//*
                     event.message = new UTextComponent(event.message.getFormattedText().replace("§2", "§a"));
+                    *//*?} else {*/
+                    // i can't be asked to figure out what is a getter and what is a setter and what is mutable and immutable so this works
+                    // this is a permanent solution and will not be changed
+                    Component newMessage = event.getMessage().children(
+                        event.getMessage().children().stream().map(
+                            (child) -> child.color(NamedTextColor.GREEN)
+                        ).collect(Collectors.toList())
+                    );
+                    event.setMessage(newMessage);
+                    /*?}*/
                 }
             }
 
@@ -56,26 +81,40 @@ public class ChatFilters {
 
             if (message.startsWith("You purchased")) {
                 if (DreamersConfig.getInstance().hideItemPurchaseMessages) {
-                    event.isCancelled = true;
+                    event.cancelled = true;
                 }
                 else if (DreamersConfig.getInstance().hideSilverCoinCount && message.contains("(+1 Silver Coin [")) {
+                    /*? if v0 {*//*
                     event.message = new UTextComponent(message.substring(0, message.indexOf(" (+1 Silver Coin [")));
+                    *//*?} else {*/
+                    // untested
+                    Component newMessage = event.getMessage().children(
+                        event.getMessage().children().stream().map(
+                            (child) -> child.replaceText(
+                                TextReplacementConfig.builder().matchLiteral(" (+1 Silver Coin [").replacement("").build()
+                            )
+                        ).collect(Collectors.toList())
+                    );
+                    event.setMessage(newMessage);
+                    /*?}*/
                 }
             }
 
             if (DreamersConfig.getInstance().hideComfyPillowMessages && COMFY_PILLOW_MESSAGES.contains(message)) {
-                event.isCancelled = true;
+                event.cancelled = true;
             }
 
             if (DreamersConfig.getInstance().hideDreamerSoulFragmentMessages && message.equals("+1 Dreamer's Soul Fragment!")) {
-                event.isCancelled = true;
+                event.cancelled = true;
             }
         }
     }
 
-    private void hideOnPattern(ChatReceiveEvent event, String message, boolean configOption, Pattern pattern) {
+    private void hideOnPattern(ChatEvent.Receive event, String message, boolean configOption, Pattern pattern) {
         if (configOption && pattern.matcher(message).find()) {
-            event.isCancelled = true;
+            event.cancelled = true;
         }
     }
+    //~}
+    //~}
 }
