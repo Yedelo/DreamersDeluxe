@@ -14,6 +14,7 @@ import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
 import cc.polyfrost.oneconfig.libs.universal.UDesktop;
 import cc.polyfrost.oneconfig.utils.Notifications;
+import org.polyfrost.oneconfig.api.config.v1.annotations.*;
 
 
 
@@ -24,6 +25,7 @@ public class DreamersConfig extends Config {
         return INSTANCE;
     }
 
+    //~ if modern '0x' -> '0xFF' {
     private static transient final int RED_ARMOR_COLOR = 0xFF0000;
     private static transient final int BLUE_ARMOR_COLOR = 0x0000FF;
     private static transient final int GREEN_ARMOR_COLOR = 0x48CC18;
@@ -32,6 +34,7 @@ public class DreamersConfig extends Config {
     private static transient final int WHITE_ARMOR_COLOR = 0xFFFFFF;
     private static transient final int PINK_ARMOR_COLOR = 0xEF83A4;
     private static transient final int GRAY_ARMOR_COLOR = 0x808080;
+    //~}
 
     private DreamersConfig() {
         super(
