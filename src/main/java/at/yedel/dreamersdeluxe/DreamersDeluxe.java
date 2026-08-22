@@ -15,8 +15,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+
 *//*?}*/
-/*? else {*/
+/*? if fabric {*/
 import net.fabricmc.api.ClientModInitializer;
 /*?}*/
 /*? if v0 {*//*
@@ -59,7 +60,6 @@ public class DreamersDeluxe /*? if fabric {*/ implements ClientModInitializer /*
 		registerEventListeners(
 			this,
 			ChatFilters.getInstance(),
-			DefusalHelper.getInstance(),
 			DreamersConfig.getInstance().magicMilkTimeHud
 		);
 		CommandManager.INSTANCE.registerCommand(DreamersDeluxeCommand.getInstance());
