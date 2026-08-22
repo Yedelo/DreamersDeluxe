@@ -2,7 +2,7 @@ import org.gradle.api.tasks.Copy
 import org.gradle.internal.Actions.set
 import org.gradle.kotlin.dsl.invoke
 
-val modDescription: String by project
+val modDescription: String = extra["mod.description"] as String
 val license: String by project
 val fabricLoaderVersion = sc.properties.getAs<String>("versions.fabricloader")
 val oneconfigVersion = sc.properties.getAs<String>("versions.oneconfig")

@@ -2,10 +2,6 @@ import dev.deftu.gradle.utils.GameSide
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.java
 
-val modDescription: String by project
-extra.set("mod.version", version.toString())
-extra.set("mod.description", modDescription)
-
 repositories {
     gradlePluginPortal()
     mavenCentral()
