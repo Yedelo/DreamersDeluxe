@@ -6,6 +6,7 @@ val modDescription: String = extra["mod.description"] as String
 val license: String by project
 val fabricLoaderVersion = sc.properties.getAs<String>("versions.fabricloader")
 val oneconfigVersion = sc.properties.getAs<String>("versions.oneconfig")
+val fabricApiVersion = sc.properties.getAs<String>("versions.fabricapi")
 val modMenuVersion = sc.properties.getAs<String>("versions.modmenu")
 val javaVersion = JavaVersion.VERSION_25
 
@@ -40,6 +41,7 @@ dependencies {
     minecraft("com.mojang:minecraft:${sc.current.version}")
     implementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
     implementation("org.polyfrost.oneconfig:${sc.current.version}-fabric:$oneconfigVersion")
+    implementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
     api("com.terraformersmc:modmenu:$modMenuVersion")
 }
 

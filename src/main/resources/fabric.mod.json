@@ -22,7 +22,8 @@
     "java": "${java}",
     "fabricloader": "${fabricLoader}",
     "minecraft": "${minecraft}",
-    "oneconfigv1": "${oneconfigv1}"
+    "oneconfigv1": "${oneconfigv1}",
+    "fabric-api": "*"
   },
   "recommends": {
     "modmenu": "*"
