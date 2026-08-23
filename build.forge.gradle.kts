@@ -37,11 +37,6 @@ dependencies {
     shadeOptionally("net.hypixel:mod-api-forge-tweaker:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
 }
 
-bloom {
-    replacement($$"${mixinJava}", "JAVA_8")
-    replacement($$"${mixinMin}", "0.7.11")
-}
-
 toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
@@ -60,7 +55,13 @@ toolkitLoomHelper {
 
 tasks {
     processResources {
+        fun MutableMap<String, String>.register(key: String, value: String) {
+            inputs.property(key, value)
+            set(key, value)
+        }
         exclude("fabric.mod.json")
+        filesMatching("mixins.dreamersdeluxe.json5") { expand("mixinJava" to "JAVA_8", "mixinMin" to "0.7.11") }
+
         outputs.upToDateWhen { false }
     }
 
