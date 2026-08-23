@@ -1,3 +1,3 @@
-**1.0.7-beta.1**
+**1.1.0**
 
-- Add support for 26.2
+- Merge legacy forge and modern fabric code
