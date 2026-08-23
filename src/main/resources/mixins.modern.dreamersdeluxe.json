@@ -1,0 +1,11 @@
+{
+  "compatibilityLevel": "${mixinJava}",
+  "package": "at.yedel.dreamersdeluxe.mixins.modern",
+  "client": [
+    "AbstractContainerScreenMixin",
+    "EquipmentLayerRendererMixin",
+    "ItemStackMixin"
+  ],
+  "minVersion": "${mixinMin}",
+  "verbose": true
+}

@@ -67,6 +67,7 @@ tasks {
         fun target(version: String) = ">=$version"
 
         exclude("mcmod.info", "dreamersdeluxe_keystore.jks")
+        exclude("mixins.legacy.dreamersdeluxe.json")
         val props = buildMap {
             register("description", modDescription)
             register("license", license)
@@ -81,7 +82,7 @@ tasks {
         filesMatching(listOf("fabric.mod.json")) { expand(props) }
 
         val mixinJava = "JAVA_${javaVersion.majorVersion}"
-        filesMatching("mixins.dreamersdeluxe.json5") { expand("mixinJava" to mixinJava, "mixinMin" to "0.8") }
+        filesMatching("mixins.modern.dreamersdeluxe.json") { expand("mixinJava" to mixinJava, "mixinMin" to "0.8") }
 
         outputs.upToDateWhen { false }
     }

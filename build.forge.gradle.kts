@@ -41,8 +41,8 @@ toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
     useTweaker("at.yedel.dreamersdeluxe.launch.DreamersDeluxeTweaker")
-    useForgeMixin("mixins.dreamersdeluxe.json5", true)
-    useMixinRefMap("mixins.dreamersdeluxe.refmap.json5", true)
+    useForgeMixin("legacy.dreamersdeluxe")
+    useMixinRefMap("legacy.dreamersdeluxe.refmap")
 
     useDevAuth(sc.properties.getAs<String>("versions.devauth"))
     useArgument("--version", "DreamersDeluxe", GameSide.BOTH)
@@ -60,7 +60,8 @@ tasks {
             set(key, value)
         }
         exclude("fabric.mod.json")
-        filesMatching("mixins.dreamersdeluxe.json5") { expand("mixinJava" to "JAVA_8", "mixinMin" to "0.7.11") }
+        exclude("mixins.modern.dreamersdeluxe.json")
+        filesMatching("mixins.legacy.dreamersdeluxe.json") { expand("mixinJava" to "JAVA_8", "mixinMin" to "0.7.11") }
 
         outputs.upToDateWhen { false }
     }

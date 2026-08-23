@@ -16,7 +16,7 @@
     ]
   },
   "mixins": [
-    "mixins.dreamersdeluxe.json5"
+    "mixins.modern.dreamersdeluxe.json"
   ],
   "depends": {
     "java": "${java}",

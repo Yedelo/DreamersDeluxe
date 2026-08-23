@@ -1,0 +1,10 @@
+{
+  "compatibilityLevel": "${mixinJava}",
+  "package": "at.yedel.dreamersdeluxe.mixins.legacy",
+  "client": [
+    "MixinGuiContainer",
+    "MixinLayerArmorBase"
+  ],
+  "minVersion": "${mixinMin}",
+  "verbose": true
+}
