@@ -7,8 +7,8 @@ package at.yedel.dreamersdeluxe.config;
 
 /*? if forge {*//*
 import at.yedel.dreamersdeluxe.DreamersDeluxe;
-import at.yedel.dreamersdeluxe.features.BedwarsXPHud;
-import at.yedel.dreamersdeluxe.features.MagicMilkTimeHud;
+import at.yedel.dreamersdeluxe.hud.BedwarsXPHud;
+import at.yedel.dreamersdeluxe.hud.MagicMilkTimeHud;
 import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
 import at.yedel.dreamersdeluxe.utils.update.UpdateSource;
 *//*?}*/

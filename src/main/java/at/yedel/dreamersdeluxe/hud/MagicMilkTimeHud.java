@@ -1,4 +1,4 @@
-package at.yedel.dreamersdeluxe.features;
+package at.yedel.dreamersdeluxe.hud;
 
 
 
@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /*? if legacy {*//*
 import net.minecraft.init.Items;
 *//*?}*/
+import at.yedel.dreamersdeluxe.features.ServerLocation;
 
 
 

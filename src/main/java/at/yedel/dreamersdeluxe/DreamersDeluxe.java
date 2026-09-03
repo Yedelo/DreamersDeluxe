@@ -4,6 +4,8 @@ package at.yedel.dreamersdeluxe;
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
 import at.yedel.dreamersdeluxe.features.*;
+import at.yedel.dreamersdeluxe.hud.BedwarsXPHud;
+import at.yedel.dreamersdeluxe.hud.MagicMilkTimeHud;
 import at.yedel.dreamersdeluxe.launch.DreamersDeluxeConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

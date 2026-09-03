@@ -1,4 +1,4 @@
-package at.yedel.dreamersdeluxe.features;
+package at.yedel.dreamersdeluxe.hud;
 
 
 
@@ -17,6 +17,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
     *//*?} else {*/
 import net.minecraft.client.player.LocalPlayer;
 /*?}*/
+import at.yedel.dreamersdeluxe.features.ServerLocation;
 import net.minecraft.client.Minecraft;
 
 

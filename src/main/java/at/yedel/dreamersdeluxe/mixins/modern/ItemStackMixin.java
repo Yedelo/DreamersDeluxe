@@ -3,7 +3,7 @@ package at.yedel.dreamersdeluxe.mixins.modern;
 
 
 
-import at.yedel.dreamersdeluxe.features.MagicMilkTimeHud;
+import at.yedel.dreamersdeluxe.hud.MagicMilkTimeHud;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
