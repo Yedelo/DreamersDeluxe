@@ -1,6 +1,4 @@
-import kotlin.reflect.KProperty
-
-rootProject.name = "DreamersDeluxe"
+rootProject.name = "YedelMod"
 
 pluginManagement {
     repositories {
@@ -17,11 +15,8 @@ pluginManagement {
     }
 }
 
-
 plugins {
-    id("dev.kikugie.stonecutter") version "0.10-alpha.6"
-    id("dev.kikugie.loom-back-compat") version "0.2"
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("dev.kikugie.stonecutter") version "0.10-alpha.7"
 }
 
 stonecutter {

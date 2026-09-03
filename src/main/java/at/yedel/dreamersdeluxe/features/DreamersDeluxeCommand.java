@@ -26,11 +26,13 @@ import org.polyfrost.oneconfig.utils.v1.dsl.ScreensKt;
 
 import java.lang.reflect.Field;
 
-//~ chat
+
+
 @Command(
     value = "dreamersdeluxe",
     description = "The main command of DreamersDeluxe"
 )
+//~ command_bridge
 public class DreamersDeluxeCommand {
     private static final DreamersDeluxeCommand INSTANCE = new DreamersDeluxeCommand();
 
@@ -40,8 +42,8 @@ public class DreamersDeluxeCommand {
 
     private DreamersDeluxeCommand() {}
 
-    //~ if v1 '@Main' -> '@Handler'
-    @Handler(
+    //~ if v1 '@Main' -> '@org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Handler'
+    @org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Handler(
         description = "The main command, hosting all subcommands. When used with no arguments, opens the config screen."
     )
     public void main() {

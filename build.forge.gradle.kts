@@ -1,6 +1,25 @@
 import dev.deftu.gradle.utils.GameSide
+import org.gradle.api.tasks.Copy
+import org.gradle.internal.Actions.set
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.java
+import kotlin.reflect.KProperty
+
+// in stonecutter.gradle.kts
+class CommonProperty<T> {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T = (rootProject.extra[sc.current.project] as Map<String, Any?>)[property.name] as T
+}
+val modName by CommonProperty<String>()
+val modId by CommonProperty<String>()
+val modDescription by CommonProperty<String>()
+val modIcon by CommonProperty<String>()
+val oneconfigVersion by CommonProperty<String>()
+val hypixelModApiVersion by CommonProperty<String>()
+val rangedVersion by CommonProperty<Boolean>()
+val maxMc by CommonProperty<String?>()
+val finalFileName by CommonProperty<String>()
+val license: String by project
+val javaVersion = JavaVersion.VERSION_1_8
 
 repositories {
     gradlePluginPortal()
@@ -30,22 +49,22 @@ configurations.named("implementation") {
 
 dependencies {
     shadeOptionally("cc.polyfrost:oneconfig-wrapper-launchwrapper:${sc.properties.getAs<String>("versions.oneconfigwrapper")}")
-    compileOnly("cc.polyfrost:oneconfig-${mcData.version}-${mcData.loader}:${sc.properties.getAs<String>("versions.oneconfig")}")
+    compileOnly("cc.polyfrost:oneconfig-${mcData.version}-${mcData.loader}:$oneconfigVersion")
     compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
 
-    modImplementation("net.hypixel:mod-api-forge:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
-    shadeOptionally("net.hypixel:mod-api-forge-tweaker:${sc.properties.getAs<String>("versions.hypixelmodapi")}")
+    modImplementation("net.hypixel:mod-api-forge:$hypixelModApiVersion")
+    shadeOptionally("net.hypixel:mod-api-forge-tweaker:$hypixelModApiVersion")
 }
 
 toolkitLoomHelper {
     disableRunConfigs(GameSide.SERVER)
 
     useTweaker("at.yedel.dreamersdeluxe.launch.DreamersDeluxeTweaker")
-    useForgeMixin("legacy.dreamersdeluxe")
-    useMixinRefMap("legacy.dreamersdeluxe.refmap")
+    useForgeMixin("legacy.$modId")
+    useMixinRefMap("legacy.$modId.refmap")
 
     useDevAuth(sc.properties.getAs<String>("versions.devauth"))
-    useArgument("--version", "DreamersDeluxe", GameSide.BOTH)
+    useArgument("--version", modName, GameSide.BOTH)
     val resourcePackDir: String? = System.getenv("minecraft.resourcePackDir")
     if (!resourcePackDir.isNullOrBlank()) {
         println("Using resource pack directory $resourcePackDir from environment variable minecraft.resourcePackDir")
@@ -59,9 +78,22 @@ tasks {
             inputs.property(key, value)
             set(key, value)
         }
+        fun target(version: String) = ">=$version"
+
         exclude("fabric.mod.json")
-        exclude("mixins.modern.dreamersdeluxe.json")
-        filesMatching("mixins.legacy.dreamersdeluxe.json") { expand("mixinJava" to "JAVA_8", "mixinMin" to "0.7.11") }
+        exclude("mixins.modern.$modId.json")
+        val props = buildMap {
+            register("modName", modName)
+            register("modId", modId)
+            register("modDescription", modDescription)
+            register("modIcon", modIcon)
+            register("mcVersion", sc.current.version)
+            register("version", version.toString())
+            register("java", target(javaVersion.majorVersion))
+            register("mixinJava", "JAVA_${javaVersion.majorVersion}")
+            register("mixinMin", "0.7.11")
+        }
+        filesMatching(listOf("mcmod.info", "mixins.legacy.$modId.json")) { expand(props) }
 
         outputs.upToDateWhen { false }
     }
@@ -74,19 +106,16 @@ tasks {
         dependsOn("build")
     }
 
-    jar {
-        archiveFileName = "DreamersDeluxe-$version+${mcData}.jar"
+    remapJar {
+        archiveFileName = finalFileName
         manifest.attributes(
             mapOf(
-                "Main-Class" to "at.yedel.dreamersdeluxe.launch.DreamersDeluxeWindow",
                 "ModSide" to "CLIENT",
             )
         )
     }
     fatJar {
         configurations = listOf(shadeOptionally)
-        relocate("net.hypixel.modapi.tweaker", "at.yedel.dreamersdeluxe.launch")
+        relocate("net.hypixel.modapi.tweaker", "at.yedel.$modId.launch")
     }
 }
-
-

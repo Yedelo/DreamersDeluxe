@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "name": "DreamersDeluxe",
-  "id": "dreamersdeluxe",
-  "description": "${description}",
+  "name": "${modName}",
+  "id": "${modId}",
+  "description": "${modDescription}",
   "version": "${version}",
   "authors": [
     "Yedel"
   ],
   "license": "${license}",
-  "icon": "assets/dreamersdeluxe/dreamersdeluxe.png",
+  "icon": "${modIcon}",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -22,22 +22,23 @@
     "java": "${java}",
     "fabricloader": "${fabricLoader}",
     "minecraft": "${minecraft}",
+    "fabric-api": "*",
     "oneconfigv1": "${oneconfigv1}",
-    "fabric-api": "*"
+    "hypixel-mod-api": "${hypixelmodapi}"
   },
   "recommends": {
     "modmenu": "*"
   },
   "contact": {
-    "homepage": "https://modrinth.com/mod/dreamersdeluxe",
-    "issues": "https://github.com/Yedelo/DreamersDeluxe/issues",
-    "sources": "https://github.com/Yedelo/DreamersDeluxe"
+    "homepage": "https://modrinth.com/mod/${modId}",
+    "issues": "https://github.com/Yedelo/${modName}/issues",
+    "sources": "https://github.com/Yedelo/${modName}"
   },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.github_releases": "https://github.com/Yedelo/DreamersDeluxe/releases/",
-        "modmenu.modrinth": "https://modrinth.com/mod/dreamersdeluxe"
+        "modmenu.github_releases": "https://github.com/Yedelo/${modName}/releases/",
+        "modmenu.modrinth": "https://modrinth.com/mod/${modId}"
       }
     }
   }

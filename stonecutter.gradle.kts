@@ -1,12 +1,8 @@
 import kotlin.reflect.KProperty
-import kotlin.text.replace
 
 plugins {
     id("dev.kikugie.stonecutter")
-    id("me.modmuss50.mod-publish-plugin") version "2.1.1"
 }
-
-val modrinthLogoLink: String by project
 
 stonecutter active "26.1-fabric"
 
@@ -31,24 +27,39 @@ stonecutter parameters {
             replace("allowAlpha", "alpha")
             replace("OneColor", "PolyColor")
             replace("getRGB", "getArgb")
+            replace("@KeyBind", "@Keybind")
+            replace("OneKeyBind", "OneConfigKeybind")
+            replace("    @Info(\n" + "        text = ", "    @Info(\n" + "        title = ")
+            replace("type = InfoType.INFO,", "//type = InfoType.INFO,")
+            replace("    @CustomOption(id = \"empty\")\n" + "    @Empty", "    @Info /* command */ ")
         }
 
         string(v1, "texthud_bridge") {
-            replace("SingleTextHud", "TextHud")
+            replace("extends SingleTextHud", "extends TextHud")
             replace("protected String getText(boolean example)", "protected String getText()")
-            replace("example", "!isReal() || HudManager.INSTANCE.isEditing()")
+            replace("if (example)", "if (!isReal() || HudManager.INSTANCE.isEditing())")
         }
 
-        string(v1, "chat") {
+        string(v1, "command_bridge") {
+            replace("@SubCommand", "@Handler")
+            replace("aliases = ", "value =")
+        }
+
+        string(v1) {
+            replace("cc.polyfrost.oneconfig.utils.Multithreading", "org.polyfrost.oneconfig.utils.v1.Multithreading")
+            replace("cc.polyfrost.oneconfig.libs.eventbus.Subscribe", "org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe")
+            replace("cc.polyfrost.oneconfig.events.event.ChatReceiveEvent", "org.polyfrost.oneconfig.api.event.v1.events.ChatEvent")
+            replace("cc.polyfrost.oneconfig.events.event.ReceivePacketEvent", "org.polyfrost.oneconfig.api.event.v1.events.PacketEvent")
+            replace("cc.polyfrost.oneconfig.events.event.WorldLoadEvent", "org.polyfrost.oneconfig.api.event.v1.events.WorldEvent")
+            replace("ChatReceiveEvent", "ChatEvent.Receive")
+            replace("ReceivePacketEvent", "PacketEvent.Receive")
+            replace("WorldLoadEvent", "WorldEvent.Load")
+            replace("event.packet", "event.getPacket()")
+            replace("UTextComponent.Companion.stripFormatting(event.message.getUnformattedText())", "event.getFullyUnformattedMessage()")
             replace("UChat.chat", "Platform.compatibility().displayChatMessage")
-        }
-
-        string(current.parsed >= "1.21.11") {
-            replace("ResourceLocation", "Identifier")
-        }
-
-        string(current.parsed < "26.1") {
-            replace("classTweaker v1 official", "classTweaker v1 named")
+            replace("UChat.say", "Minecraft.getInstance().player.connection.sendChat")
+            replace("event.isCancelled", "event.cancelled")
+            replace("Minecraft.getMinecraft().addScheduledTask", "Minecraft.getInstance().schedule")
         }
     }
 
@@ -63,33 +74,15 @@ stonecutter parameters {
 
         operator fun getValue(thisRef: Any?, property: KProperty<*>): T = value
     }
-
-    val yaclVersion by Declare(run {
-        if (!properties.contains("versions.yacl")) null
-        else {
-            val rawVersionProperty = properties.getAs<String>("versions.yacl")
-            if (rawVersionProperty.endsWith(loader)) rawVersionProperty else "$rawVersionProperty+${current.project}"
-        }
-    })
-
-    val javaVersion by Declare(run {
-        val mc = current.parsed
-        when {
-            mc >= "26.1" -> JavaVersion.VERSION_25
-            mc >= "1.20.5" -> JavaVersion.VERSION_21
-            mc >= "1.18" -> JavaVersion.VERSION_17
-            mc >= "1.17" -> JavaVersion.VERSION_16
-            else -> JavaVersion.VERSION_1_8
-        }
-    })
-
+    val modName by Declare(extra["mod.name"])
+    val modId by Declare(extra["mod.id"])
+    val modDescription by Declare(extra["mod.description"])
+    val modIcon by Declare(extra["modIcon"])
+    val fabricLoaderVersion by Declare(properties.getAs<String>("versions.fabricloader"))
+    val oneconfigVersion by Declare(properties.getAs<String>("versions.oneconfig"))
+    val hypixelModApiVersion by Declare(properties.getAs<String>("versions.hypixelmodapi"))
     val rangedVersion by Declare(properties.getAs<String>("versioning") == "range")
     val maxMc by Declare(if (rangedVersion) properties.getAs<String>("mc.max") else null)
-
     val minecraftTarget by Declare(if (rangedVersion) "${current.version}-$maxMc" else current.version)
-    val finalFileName by Declare("DreamersDeluxe-$version+$minecraftTarget-$loader.jar")
-
-    val modrinthReadme by Declare(rootProject.file("README.md").readText()
-        .replace("src/main/resources/assets/dreamersdeluxe/dreamersdeluxe.png", modrinthLogoLink)
-    )
+    val finalFileName by Declare("$modName-$version+$minecraftTarget-$loader.jar")
 }

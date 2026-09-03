@@ -1,19 +1,18 @@
 [
   {
-    "modid": "${mod_id}",
-    "name": "${mod_name}",
-    "description": "${mod_description}",
-    "version": "${mod_version}",
-    "mcversion": "${mc_version}",
-    "url": "https://modrinth.com/mod/dreamersdeluxe",
-    "updateUrl": "https://api.modrinth.com/v2/project/dreamersdeluxe/version",
+    "modid": "${modId}",
+    "name": "${modName}",
+    "description": "${modDescription}",
+    "version": "${version}",
+    "mcversion": "${mcVersion}",
+    "url": "https://modrinth.com/mod/${modId}",
+    "updateUrl": "https://api.modrinth.com/v2/project/${modId}/version",
     "authorList": [
       "Yedel"
     ],
     "credits": "Debuggings for a good example mod",
-    "logoFile": "assets/dreamersdeluxe/dreamersdeluxe.png",
+    "logoFile": "${modIcon}",
     "screenshots": [],
     "dependencies": []
   }
 ]
- 
