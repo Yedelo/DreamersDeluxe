@@ -4,19 +4,11 @@ package at.yedel.dreamersdeluxe.mixins.modern;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer;
-import net.minecraft.world.item.ItemStack;
-import org.polyfrost.oneconfig.api.platform.v1.Platform;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-
-import java.util.HashSet;
-import java.util.Set;
 
 
 

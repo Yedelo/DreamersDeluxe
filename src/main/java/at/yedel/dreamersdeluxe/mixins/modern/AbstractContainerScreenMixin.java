@@ -4,22 +4,17 @@ package at.yedel.dreamersdeluxe.mixins.modern;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
-import net.minecraft.ChatFormatting;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Objects;
 
 
 

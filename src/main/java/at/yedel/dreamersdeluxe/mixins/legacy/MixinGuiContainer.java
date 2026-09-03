@@ -3,7 +3,7 @@ package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import cc.polyfrost.oneconfig.libs.universal.UGraphics;
 import cc.polyfrost.oneconfig.platform.Platform;
 import net.minecraft.client.gui.inventory.GuiChest;

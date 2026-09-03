@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /*? if legacy {*//*
 import net.minecraft.init.Items;
 *//*?}*/
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 
 
 

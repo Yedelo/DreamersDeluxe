@@ -4,7 +4,7 @@ package at.yedel.dreamersdeluxe.mixins.legacy;
 
 
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import net.minecraft.client.renderer.entity.layers.LayerArmorBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;

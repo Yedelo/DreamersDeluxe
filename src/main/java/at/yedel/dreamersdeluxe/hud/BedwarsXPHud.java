@@ -17,7 +17,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
     *//*?} else {*/
 import net.minecraft.client.player.LocalPlayer;
 /*?}*/
-import at.yedel.dreamersdeluxe.features.ServerLocation;
+import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import net.minecraft.client.Minecraft;
 
 
