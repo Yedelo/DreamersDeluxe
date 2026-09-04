@@ -1,4 +1,4 @@
-rootProject.name = "YedelMod"
+rootProject.name = "DreamersDeluxe"
 
 pluginManagement {
     repositories {
