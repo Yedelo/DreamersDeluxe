@@ -19,7 +19,6 @@ pluginManagement {
 
 plugins {
     id("dev.kikugie.stonecutter") version "0.10-alpha.7"
-    id("dev.kikugie.loom-back-compat") version "0.4.2"
 }
 
 stonecutter {
@@ -29,7 +28,7 @@ stonecutter {
         }
 
         registerProject("26.1", "fabric")
-        registerProject("1.8.9", "fabric")
+        registerProject("1.8.9", "forge", "fabric")
         vcsVersion = "26.1-fabric"
     }
 }

@@ -59,7 +59,8 @@ repositories {
 }
 
 plugins {
-    id("dev.kikugie.loom-back-compat")
+    id("dev.kikugie.loom-back-compat") version "0.4.2"
+    id("net.fabricmc.fabric-loom-remap") version "1.17.4" apply false
     id("ploceus") version "1.17.4" apply false
     id("dev.deftu.gradle.tools.bloom") version "2.73.0"
 }
