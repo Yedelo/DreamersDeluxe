@@ -1,3 +1,3 @@
-**1.1.0**
+**2.0.0-beta.1**
 
-- Merge legacy forge and modern fabric code
+- Port mod to ornithe
