@@ -4,6 +4,7 @@ package at.yedel.dreamersdeluxe.hud;
 
 
 /*? if v0 {*//*
+import at.yedel.dreamersdeluxe.config.DreamersConfig;
 import at.yedel.dreamersdeluxe.utils.Constants;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 *//*?} else {*/
@@ -49,20 +50,15 @@ public class MagicMilkTimeHud extends TextHud {
 
     private transient long milkDrinkTime;
 
-    public void handleMilk() {
+    public static void handleMilk() {
         if (ServerLocation.getInstance().isInBedwars()) {
-            milkDrinkTime = System.nanoTime();
+            //? if v0 {
+             //DreamersConfig.getInstance().magicMilkTimeHud.milkDrinkTime = System.nanoTime();
+            //?} else {
+            HudManager.INSTANCE.getHudsOfType(MagicMilkTimeHud.class).forEach((hud) -> hud.milkDrinkTime = System.nanoTime());
+            //?}
         }
     }
-
-    /*? if forge {*//*
-    @SubscribeEvent
-    public void onItemUse(PlayerUseItemEvent.Finish event) {
-        if (event.item.getItem() == Items.milk_bucket) {
-            handleMilk();
-        }
-    }
-    *//*?}*/
 
     @Override
     protected String getText() {

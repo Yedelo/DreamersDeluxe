@@ -1,5 +1,6 @@
 import dev.deftu.gradle.bloom.capitalize
 import jdk.jfr.internal.JVM.exclude
+import jdk.jfr.internal.JVM.include
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 import kotlin.reflect.KProperty
@@ -26,6 +27,7 @@ val oslCoreVersion = if (sc.properties.contains("versions.oslcore")) sc.properti
 val oslEntrypointsVersion = if (sc.properties.contains("versions.oslcore")) sc.properties["versions.oslentrypoints"] else null
 val ornithe = sc.current.version == "1.8.9"
 val environment = if (ornithe) "ornithe" else "fabric"
+val mixinConfig = if (ornithe) "legacy" else "modern"
 
 repositories {
     fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
@@ -87,6 +89,7 @@ dependencies {
     if (ornithe) {
         implementation("net.ornithemc.osl-gen2:core:${oslCoreVersion}")
         implementation("net.ornithemc.osl-gen2:entrypoints:${oslEntrypointsVersion}")
+        compileOnly("net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7")
     }
     else {
         implementation("net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}")
@@ -122,7 +125,6 @@ tasks {
         fun target(version: String?) = ">=$version"
 
         exclude("mcmod.info", "dreamersdeluxe_keystore.jks")
-        exclude("mixins.legacy.$modId.json")
         val props = buildMap {
             register("modName", modName)
             register("modId", modId)
@@ -130,7 +132,7 @@ tasks {
             register("modIcon", modIcon)
             register("license", license)
             register("version", version.toString())
-            register("mixinConfig", if (ornithe) "legacy" else "modern")
+            register("mixinConfig", mixinConfig)
             register("java", target(javaVersion.majorVersion))
             register("fabricLoader", target(fabricLoaderVersion))
             val minecraftDependency =
@@ -145,7 +147,7 @@ tasks {
             register("mixinJava", "JAVA_${javaVersion.majorVersion}")
             register("mixinMin", "0.8")
         }
-        filesMatching(listOf("fabric.mod.json", "mixins.modern.$modId.json")) { expand(props) }
+        filesMatching(listOf("fabric.mod.json", "mixins.$mixinConfig.$modId.json")) { expand(props) }
 
         outputs.upToDateWhen { false }
     }
@@ -160,7 +162,11 @@ tasks {
 
     loomx.modJar {
         archiveFileName = finalFileName
-        // manifest.attributes(mapOf())
+        manifest.attributes(
+            mapOf(
+                "Main-Class" to "at.yedel.dreamersdeluxe.launch.DreamersDeluxeWindow"
+            )
+        )
     }
 }
 

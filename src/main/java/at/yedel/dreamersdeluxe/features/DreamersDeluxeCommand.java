@@ -71,19 +71,19 @@ public class DreamersDeluxeCommand {
     //~}
 
     /*? if forge {*//*
-    @SubCommandGroup("update")
+    @HandlerGroup("update")
     public static class Update {
-        @SubCommand
+        @Handler
         public void main() {
             DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(DreamersConfig.getInstance().getUpdateSource(), UpdateManager.FeedbackMethod.CHAT);
         }
 
-        @SubCommand
+        @Handler
         public void modrinth() {
             DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(UpdateSource.MODRINTH, UpdateManager.FeedbackMethod.CHAT);
         }
 
-        @SubCommand
+        @Handler
         public void github() {
             DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(UpdateSource.GITHUB, UpdateManager.FeedbackMethod.CHAT);
         }

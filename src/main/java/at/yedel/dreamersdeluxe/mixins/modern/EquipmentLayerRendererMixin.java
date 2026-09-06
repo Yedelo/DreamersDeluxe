@@ -1,4 +1,4 @@
-/*? if fabric {*/
+/*? if modern {*/
 package at.yedel.dreamersdeluxe.mixins.modern;
 
 

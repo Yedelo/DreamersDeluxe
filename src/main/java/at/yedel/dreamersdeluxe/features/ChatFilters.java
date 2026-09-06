@@ -5,8 +5,8 @@ package at.yedel.dreamersdeluxe.features;
 import at.yedel.dreamersdeluxe.config.DreamersConfig;
 
 /*? if v0 {*//*
-import cc.polyfrost.oneconfig.events.event.ChatReceiveEvent;
-import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
+import org.polyfrost.oneconfig.api.event.v1.events.ChatEvent;
+import org.polyfrost.oneconfig.api.event.v1.invoke.impl.Subscribe;
 import cc.polyfrost.oneconfig.libs.universal.wrappers.message.UTextComponent;
 *//*?} else {*/
 import net.kyori.adventure.text.Component;
@@ -48,7 +48,7 @@ public class ChatFilters {
     public void modifyBedwarsChat(ChatEvent.Receive event) {
         if (DreamersConfig.getInstance().enabled && ServerLocation.getInstance().isInBedwars()) {
             /*? if v0 {*//*
-            String message = UTextComponent.Companion.stripFormatting(event.message.getUnformattedText());
+            String message = event.getFullyUnformattedMessage();
             *//*?} else {*/
             String message = event.getFullyUnformattedMessage();
             /*?}*/

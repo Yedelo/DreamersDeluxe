@@ -2,6 +2,7 @@
   "compatibilityLevel": "${mixinJava}",
   "package": "at.yedel.dreamersdeluxe.mixins.legacy",
   "client": [
+    "MixinEntityPlayer",
     "MixinGuiContainer",
     "MixinLayerArmorBase"
   ],

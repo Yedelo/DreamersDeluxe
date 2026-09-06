@@ -1,4 +1,4 @@
-/*? if fabric {*/
+/*? if modern {*/
 package at.yedel.dreamersdeluxe.mixins.modern;
 
 
@@ -25,7 +25,7 @@ public abstract class ItemStackMixin {
     @Inject(method = "finishUsingItem", at = @At("HEAD"))
     private void dreamersdeluxe$handleMilk(Level level, LivingEntity livingEntity, CallbackInfoReturnable<ItemStack> cir) {
         if (getItem() == Items.MILK_BUCKET) {
-            HudManager.INSTANCE.getHudsOfType(MagicMilkTimeHud.class).forEach((hud) -> hud.handleMilk());
+            MagicMilkTimeHud.handleMilk();
         }
     }
 }

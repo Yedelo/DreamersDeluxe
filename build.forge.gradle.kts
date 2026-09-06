@@ -111,6 +111,7 @@ tasks {
         manifest.attributes(
             mapOf(
                 "ModSide" to "CLIENT",
+                "Main-Class" to "at.yedel.dreamersdeluxe.launch.DreamersDeluxeWindow"
             )
         )
     }

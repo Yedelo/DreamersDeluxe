@@ -61,8 +61,7 @@ public class DreamersDeluxe /*? if fabric {*/ implements ClientModInitializer /*
 		/*? if v0 {*//*
 		registerEventListeners(
 			this,
-			ChatFilters.getInstance(),
-			DreamersConfig.getInstance().magicMilkTimeHud
+			ChatFilters.getInstance()
 		);
 		CommandManager.INSTANCE.registerCommand(DreamersDeluxeCommand.getInstance());
 		*//*?} else {*/
