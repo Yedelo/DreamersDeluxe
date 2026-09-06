@@ -10,6 +10,9 @@ import net.ornithemc.ploceus.api.PloceusGradleExtensionApi
 class CommonProperty<T> {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T = (rootProject.extra[sc.current.project] as Map<String, Any?>)[property.name] as T
 }
+val ornithe = sc.current.version == "1.8.9"
+val environment = if (ornithe) "ornithe" else "fabric"
+val mixinConfig = if (ornithe) "legacy" else "modern"
 val modName by CommonProperty<String>()
 val modId by CommonProperty<String>()
 val modDescription by CommonProperty<String>()
@@ -22,12 +25,9 @@ val finalFileName by CommonProperty<String>()
 val license: String by project
 val javaVersion = JavaVersion.VERSION_25
 val fabricLoaderVersion = sc.properties.getAs<String>("versions.fabricloader")
-val fabricApiVersion = if (sc.properties.contains("versions.fabricapi")) sc.properties.getAs<String>("versions.fabricapi") else null
-val oslCoreVersion = if (sc.properties.contains("versions.oslcore")) sc.properties["versions.oslcore"] else null
-val oslEntrypointsVersion = if (sc.properties.contains("versions.oslcore")) sc.properties["versions.oslentrypoints"] else null
-val ornithe = sc.current.version == "1.8.9"
-val environment = if (ornithe) "ornithe" else "fabric"
-val mixinConfig = if (ornithe) "legacy" else "modern"
+val fabricApiVersion = if (!ornithe) sc.properties.getAs<String>("versions.fabricapi") else null
+val oslCoreVersion = if (ornithe) sc.properties["versions.oslcore"] else null
+val oslEntrypointsVersion = if (ornithe) sc.properties["versions.oslentrypoints"] else null
 
 repositories {
     fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
@@ -141,10 +141,6 @@ tasks {
             register("minecraft", minecraftDependency)
             register("oneconfigv1", target(oneconfigVersion))
             register("hypixelmodapi", target(hypixelModApiVersion))
-            if (ornithe) {
-                register("oslcore", target(oslCoreVersion))
-                register("oslentrypoints", target(oslEntrypointsVersion))
-            }
             register("mixinJava", "JAVA_${javaVersion.majorVersion}")
             register("mixinMin", "0.8")
         }
