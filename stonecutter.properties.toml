@@ -6,7 +6,7 @@ versions.hypixelmodapi = "1.0.1.2"
 versioning = "range"
 mc.max = "26.2"
 versions.fabricapi = "0.155.2+26.1.2"
-versions.oneconfig = "1.1.7"
+versions.oneconfig = "1.1.12"
 versions.modmenu = "18.0.0"
 
 ["1.8.9-forge"]
