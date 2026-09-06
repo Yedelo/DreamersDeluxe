@@ -10,6 +10,13 @@
 
 BedWars features to support the dreamers' lifestyle
 
+## Dependencies
+
+|   **Environment**    | **[OneConfig](https://polyfrost.org/projects/oneconfig)** v0/v1 | **[Hypixel Mod API](https://github.com/HypixelDev/ModAPI)** v1.0.12+ |
+|:--------------------:|:---------------------------------------------------------------:|:--------------------------------------------------------------------:|
+|    Forge (1.8.9)     |                      Bundled (via tweaker)                      |    Bundled (via tweaker, can be overriden with separate download)    |
+| Fabric (1.8.9/26.1+) |                  Required (separate download)                   |                        Bundled with OneConfig                        |
+
 ## Features
 
 <details><summary>Gameplay</summary>
