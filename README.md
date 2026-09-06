@@ -8,9 +8,7 @@
 
 ![Modrinth Version](https://img.shields.io/modrinth/v/zzBOJg4N?label=Modrinth%20version)
 
-Use /dreamersdeluxe for settings and more info.
-
-Use /dreamersdeluxe update on Forge to check for mod updates.
+BedWars features to support the dreamers' lifestyle
 
 ## Features
 
