@@ -1,3 +1,3 @@
-**2.0.0-beta.1**
+**1.1.1**
 
-- Port mod to ornithe
+- Add 26.3 compatibility
