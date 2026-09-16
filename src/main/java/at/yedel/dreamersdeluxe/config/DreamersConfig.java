@@ -281,7 +281,7 @@ public class DreamersConfig extends Config {
         category = "Challenges",
         subcategory = "Gameplay"
     )
-    public PolyColor defusalHelperColor = new PolyColor(0xF65E5E);
+    public PolyColor defusalHelperColor = new PolyColor(0xFFF65E5E);
 
     /*? if v0 {*//*
     
