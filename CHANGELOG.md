@@ -1,3 +1,3 @@
-**1.1.1**
+**1.1.2**
 
-- Add 26.3 compatibility
+- Add replace team names with verity variants
