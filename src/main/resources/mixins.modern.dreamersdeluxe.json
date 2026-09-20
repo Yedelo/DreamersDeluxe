@@ -4,6 +4,7 @@
   "client": [
     "AbstractContainerScreenMixin",
     "EquipmentLayerRendererMixin",
+    "ScoreboardRenderingMixin",
     "ItemStackMixin"
   ],
   "minVersion": "${mixinMin}",
