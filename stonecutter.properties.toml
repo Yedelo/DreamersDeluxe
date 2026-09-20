@@ -2,9 +2,16 @@ versions.fabricloader = "0.19.3"
 versions.devauth = "1.2.2"
 versions.hypixelmodapi = "1.0.1.2"
 
-["26.1-fabric"]
+["26.2-fabric"]
 versioning = "range"
 mc.max = "26.3"
+versions.fabricapi = "0.161.0+26.2"
+versions.oneconfig = "1.2.1"
+versions.modmenu = "20.0.2"
+
+["26.1-fabric"]
+versioning = "range"
+mc.max = "26.1.2"
 versions.fabricapi = "0.155.2+26.1.2"
 versions.oneconfig = "1.2.1"
 versions.modmenu = "18.0.0"
