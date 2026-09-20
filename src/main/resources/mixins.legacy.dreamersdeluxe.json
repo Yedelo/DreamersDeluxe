@@ -4,6 +4,7 @@
   "client": [
     "MixinEntityPlayer",
     "MixinGuiContainer",
+    "MixinGuiIngame",
     "MixinLayerArmorBase"
   ],
   "minVersion": "${mixinMin}",
