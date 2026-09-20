@@ -377,4 +377,90 @@ public class DreamersConfig extends Config {
         subcategory = "Slumber Hotel"
     )
     public boolean hideDreamerSoulFragmentMessages = false;
+
+    @Switch(
+        //? if v0
+        // size = 2,
+        title = "Replace Team Names with Verity Variants",
+        category = "Fun",
+        subcategory = "Verity"
+    )
+    public boolean replaceTeamNamesWithVerityVariants = false;
+
+    //@TODO use actual variant names
+    @Text(
+        title = "Red Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String redTeamVariant = "RedVerity";
+
+    @Text(
+        title = "Blue Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String blueTeamVariant = "BlueVerity";
+
+    @Text(
+        title = "Green Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String greenTeamVariant = "GreenVerity";
+
+    @Text(
+        title = "Yellow Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String yellowTeamVariant = "YellowVerity";
+
+    @Text(
+        title = "Aqua Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String aquaTeamVariant = "AquaVerity";
+
+    @Text(
+        title = "White Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String whiteTeamVariant = "WhiteVerity";
+
+    @Text(
+        title = "Pink Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String pinkTeamVariant = "PinkVerity";
+
+    @Text(
+        title = "Gray Team Variant",
+        category = "Fun",
+        subcategory = "Verity",
+        placeholder = "Verity goes here..."
+    )
+    public String grayTeamVariant = "GrayVerity";
+
+    public String getVerityText(String text) {
+        return text
+            .replace("Red", redTeamVariant)
+            .replace("Blue", blueTeamVariant)
+            .replace("Green", greenTeamVariant)
+            .replace("Yellow", yellowTeamVariant)
+            .replace("Aqua", aquaTeamVariant)
+            .replace("White", whiteTeamVariant)
+            .replace("Pink", pinkTeamVariant)
+            .replace("Gray", grayTeamVariant);
+    }
 }
