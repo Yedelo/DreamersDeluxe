@@ -380,7 +380,7 @@ public class DreamersConfig extends Config {
 
     @Switch(
         //? if v0
-        // size = 2,
+         //size = 2,
         title = "Replace Team Names with Verity Variants",
         category = "Fun",
         subcategory = "Verity"
