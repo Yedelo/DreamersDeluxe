@@ -387,14 +387,13 @@ public class DreamersConfig extends Config {
     )
     public boolean replaceTeamNamesWithVerityVariants = false;
 
-    //@TODO use actual variant names
     @Text(
         title = "Red Team Variant",
         category = "Fun",
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String redTeamVariant = "RedVerity";
+    public String redTeamVariant = "Cruelty";
 
     @Text(
         title = "Blue Team Variant",
@@ -402,7 +401,7 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String blueTeamVariant = "BlueVerity";
+    public String blueTeamVariant = "Falsity";
 
     @Text(
         title = "Green Team Variant",
@@ -410,7 +409,7 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String greenTeamVariant = "GreenVerity";
+    public String greenTeamVariant = "Curiosity";
 
     @Text(
         title = "Yellow Team Variant",
@@ -418,15 +417,16 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String yellowTeamVariant = "YellowVerity";
+    public String yellowTeamVariant = "Verity";
 
+    // i made Hydrity
     @Text(
         title = "Aqua Team Variant",
         category = "Fun",
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String aquaTeamVariant = "AquaVerity";
+    public String aquaTeamVariant = "Hydrity";
 
     @Text(
         title = "White Team Variant",
@@ -434,7 +434,7 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String whiteTeamVariant = "WhiteVerity";
+    public String whiteTeamVariant = "Angelity";
 
     @Text(
         title = "Pink Team Variant",
@@ -442,7 +442,7 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String pinkTeamVariant = "PinkVerity";
+    public String pinkTeamVariant = "Lovity";
 
     @Text(
         title = "Gray Team Variant",
@@ -450,7 +450,7 @@ public class DreamersConfig extends Config {
         subcategory = "Verity",
         placeholder = "Verity goes here..."
     )
-    public String grayTeamVariant = "GrayVerity";
+    public String grayTeamVariant = "Obscurity";
 
     public String getVerityText(String text) {
         return text
