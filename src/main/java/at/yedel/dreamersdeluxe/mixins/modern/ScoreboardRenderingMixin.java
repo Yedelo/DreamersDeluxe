@@ -8,6 +8,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
     //~ if < 26.2 'Hud' -> 'Gui'
 import net.minecraft.client.gui.Hud;
 import net.minecraft.network.chat.Component;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -20,7 +21,7 @@ public abstract class ScoreboardRenderingMixin {
     @ModifyExpressionValue(method = "displayScoreboardSidebar", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/Hud$1DisplayEntry;name:Lnet/minecraft/network/chat/Component;"))
     private Component dreamersdeluxe$replaceTeamNamesWithVerityVariants(Component original) {
         if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().replaceTeamNamesWithVerityVariants && ServerLocation.getInstance().isInBedwars()) {
-            return Component.literal(DreamersConfig.getInstance().getVerityText(original.getString()));
+            return DreamersConfig.getInstance().getVerityTextAsComponent(original);
         }
         return original;
     }

@@ -18,7 +18,7 @@ public abstract class MixinGuiIngame {
     @Unique
     private static String dreamersdeluxe$getVerityText(String text) {
         if (DreamersConfig.getInstance().enabled && DreamersConfig.getInstance().replaceTeamNamesWithVerityVariants && ServerLocation.getInstance().isInBedwars()) {
-            return DreamersConfig.getInstance().getVerityText(text);
+            return DreamersConfig.getInstance().getVerityTextAsString(text);
         }
         return text;
     }

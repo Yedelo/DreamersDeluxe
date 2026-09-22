@@ -23,6 +23,11 @@ import cc.polyfrost.oneconfig.libs.universal.UDesktop;
 import cc.polyfrost.oneconfig.utils.Notifications;
  
 *//*?} else {*/
+//? if modern {
+import net.kyori.adventure.platform.modcommon.MinecraftClientAudiences;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.minecraft.network.chat.Component;
+//?}
 import org.polyfrost.compose.render.PolyColor;
 import org.polyfrost.oneconfig.api.config.v1.Config;
 import org.polyfrost.oneconfig.api.config.v1.annotations.*;
@@ -452,7 +457,7 @@ public class DreamersConfig extends Config {
     )
     public String grayTeamVariant = "Obscurity";
 
-    public String getVerityText(String text) {
+    public String getVerityTextAsString(String text) {
         return text
             .replace("Red", redTeamVariant)
             .replace("Blue", blueTeamVariant)
@@ -463,4 +468,20 @@ public class DreamersConfig extends Config {
             .replace("Pink", pinkTeamVariant)
             .replace("Gray", grayTeamVariant);
     }
+
+    //? if modern {
+    public Component getVerityTextAsComponent(Component component) {
+        return MinecraftClientAudiences.of().asNative(
+            MinecraftClientAudiences.of().asAdventure(component)
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Red").replacement(redTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Blue").replacement(blueTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Green").replacement(greenTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Yellow").replacement(yellowTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Aqua").replacement(aquaTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("White").replacement(whiteTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Pink").replacement(pinkTeamVariant).build())
+            .replaceText(TextReplacementConfig.builder().matchLiteral("Gray").replacement(grayTeamVariant).build())
+        );
+    }
+    //?}
 }
