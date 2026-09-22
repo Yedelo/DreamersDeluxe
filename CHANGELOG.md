@@ -1,3 +1,3 @@
-**1.1.2**
+**1.1.3**
 
-- Add replace team names with verity variants
+- Fix replace team names with verity variants breaking all the formatting of the scoreboard 🔥
