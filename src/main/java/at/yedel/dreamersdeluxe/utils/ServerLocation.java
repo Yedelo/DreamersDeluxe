@@ -19,7 +19,7 @@ public class ServerLocation {
     private boolean inBedwars;
 
     private ServerLocation() {
-        HypixelModAPI.getInstance().registerHandler(ClientboundLocationPacket.class, this::handleLocationPacket);
+        HypixelModAPI.getInstance().createHandler(ClientboundLocationPacket.class, this::handleLocationPacket);
         HypixelModAPI.getInstance().subscribeToEventPacket(ClientboundLocationPacket.class);
     }
 
