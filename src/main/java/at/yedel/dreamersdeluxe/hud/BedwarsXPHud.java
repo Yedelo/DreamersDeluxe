@@ -55,15 +55,7 @@ public class BedwarsXPHud extends TextHud {
             return "§b3,550§7/§a5,000";
         }
         else {
-            /*? if legacy {*//*
-            EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
-            *//*?} else {*/
-            LocalPlayer player = Minecraft.getInstance().player;
-            /*?}*/
-            if (player == null) return "";
-            //~ if modern 'experience' -> 'experienceProgress'
-            float progress = player.experienceProgress;
-            int xp = (int) (progress * 5000);
+            int xp = (int) (experience() * 5000);
             return "§b" + commafy(xp) + "§7/§a5,000";
         }
     }
@@ -72,10 +64,19 @@ public class BedwarsXPHud extends TextHud {
         return String.format("%,d", number);
     }
 
-    /*? if v0 {*//*
-    @Override
-    protected boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.experience > 0;
+    private float experience() {
+        //? if legacy {
+//        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+        //?} else {
+        LocalPlayer player = Minecraft.getInstance().player;
+        //?}
+        if (player == null) return 0;
+        //~ if modern 'experience' -> 'experienceProgress'
+        return player.experienceProgress;
     }
-    *//*?}*/
+
+    @Override
+    public boolean shouldShow() {
+        return ServerLocation.getInstance().isInBedwars() && experience() > 0;
+    }
 }

@@ -78,10 +78,8 @@ public class MagicMilkTimeHud extends TextHud {
         return (double) Math.round(value * scale) / scale;
     }
 
-    /*? if v0 {*//*
     @Override
     public boolean shouldShow() {
-        return super.shouldShow() && ServerLocation.getInstance().isInBedwars() && getTimeRemaining() > 0;
+        return ServerLocation.getInstance().isInBedwars() && getTimeRemaining() > 0;
     }
-    *//*?}*/
 }
