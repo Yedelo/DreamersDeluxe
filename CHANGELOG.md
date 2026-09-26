@@ -1,3 +1,3 @@
-**1.1.3**
+# **1.1.4**
 
-- Fix replace team names with verity variants breaking all the formatting of the scoreboard 🔥
+- Hide bedwars xp and magic milk HUDs when empty/not relevant (implement shouldShow for v1)
