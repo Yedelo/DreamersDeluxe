@@ -1,3 +1,3 @@
-# **1.1.4**
+## **1.2.0**
 
-- Hide bedwars xp and magic milk HUDs when empty/not relevant (implement shouldShow for v1)
+- Add 1.8.9 ornithe support
