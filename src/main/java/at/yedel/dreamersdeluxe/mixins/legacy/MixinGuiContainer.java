@@ -31,7 +31,6 @@ public abstract class MixinGuiContainer {
 				slot.yDisplayPosition,
 				slot.xDisplayPosition + 16,
 				slot.yDisplayPosition + 16,
-				//~ if v1 'getRGB()' -> 'getArgb()'
 				DreamersConfig.getInstance().defusalHelperColor.getArgb()
 			);
 		}
