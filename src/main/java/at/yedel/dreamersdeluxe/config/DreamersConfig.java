@@ -5,24 +5,6 @@ package at.yedel.dreamersdeluxe.config;
 
 
 
-/*? if forge {*//*
-import at.yedel.dreamersdeluxe.DreamersDeluxe;
-import at.yedel.dreamersdeluxe.hud.BedwarsXPHud;
-import at.yedel.dreamersdeluxe.hud.MagicMilkTimeHud;
-import at.yedel.dreamersdeluxe.utils.update.UpdateManager;
-import at.yedel.dreamersdeluxe.utils.update.UpdateSource;
-*//*?}*/
-/*? if v0 {*//*
-
-import cc.polyfrost.oneconfig.config.Config;
-import cc.polyfrost.oneconfig.config.annotations.*;
-import cc.polyfrost.oneconfig.config.core.OneColor;
-import cc.polyfrost.oneconfig.config.data.Mod;
-import cc.polyfrost.oneconfig.config.data.ModType;
-import cc.polyfrost.oneconfig.libs.universal.UDesktop;
-import cc.polyfrost.oneconfig.utils.Notifications;
- 
-*//*?} else {*/
 //? if modern {
 import net.kyori.adventure.platform.modcommon.MinecraftClientAudiences;
 import net.kyori.adventure.text.TextReplacementConfig;
@@ -32,17 +14,14 @@ import org.polyfrost.compose.render.PolyColor;
 import org.polyfrost.oneconfig.api.config.v1.Config;
 import org.polyfrost.oneconfig.api.config.v1.annotations.*;
 import org.polyfrost.oneconfig.api.notifications.v1.Notifications;
-/*?}*/
 
 
-//~ config_bridge
 public class DreamersConfig extends Config {
     private static final DreamersConfig INSTANCE = new DreamersConfig();
 
     public static DreamersConfig getInstance() {
         return INSTANCE;
     }
-
 
     // OR's the number with 0xFF0000
     // initial idea was to replace 0x with 0xFF, but this does not work properly because some colors start with FF
@@ -58,104 +37,17 @@ public class DreamersConfig extends Config {
     //~}
 
     private DreamersConfig() {
-        /*? if v0 {*//*
-        
-        super(
-            new Mod(
-                "DreamersDeluxe",
-                ModType.HYPIXEL,
-                "/assets/dreamersdeluxe/dreamersdeluxe.png"
-            ),
-            "dreamersdeluxe.json",
-            true,
-            true
-        );
-        initialize();
-        
-        *//*?} else {*/
         super("dreamersdeluxe", "/assets/dreamersdeluxe/dreamersdeluxe.png", "DreamersDeluxe", Category.HYPIXEL);
-        /*?}*/
         addDependency("defusalHelperColor", "bedwarsDefusalHelper");
         for (String color: new String[] { "red", "blue", "green", "yellow", "aqua", "white", "pink", "gray" }) {
             addDependency(color + "Color", "customArmorColors");
         }
     }
-
-    /*? if forge {*//*
-    
-    @Dropdown(
-        title = "Update Source",
-        description = "Where to get updates from. Use GitHub for earlier releases and Modrinth for more stable releases.",
-        category = "General",
-        subcategory = "Updates",
-        options = {"Modrinth", "GitHub"}
-    )
-    public int updateSource = 0;
-
-    public UpdateSource getUpdateSource() {
-        if (updateSource == 0) {
-            return UpdateSource.MODRINTH;
-        }
-        else {
-            return UpdateSource.GITHUB;
-        }
-    }
-    
-    @Switch(
-        title = "Automatically Check for Updates",
-        description = "Checks for updates on game load",
-        category = "General",
-        subcategory = "Updates"
-    )
-    public boolean automaticallyCheckForUpdates = true;
-
-    @Button(
-        title = "Modrinth Link",
-        description = "Click to open the Modrinth site",
-        category = "General",
-        subcategory = "Updates",
-        text = "Open"
-    )
-    public void openModrinthLink() {
-        if (!UDesktop.browse(DreamersDeluxe.getInstance().getUpdateManager().getModrinthLink())) {
-            Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open modrinth link!");
-        }
-    }
-
-    @Button(
-        title = "GitHub Link",
-        description = "Click to open the GitHub repository",
-        category = "General",
-        subcategory = "Updates",
-        text = "Open"
-    )
-    public void openGitHubRepository() {
-        if (!UDesktop.browse(DreamersDeluxe.getInstance().getUpdateManager().getGithubLink())) {
-            Notifications.INSTANCE.send("DreamersDeluxe", "Couldn't open github link!");
-        }
-    }
-
-    @Button(
-        title = "Check for Updates",
-        description = "Check for updates with the selected source",
-        category = "General",
-        subcategory = "Updates",
-        text = "Check",
-        size = 2
-    )
-    public void checkForUpdates() {
-        DreamersDeluxe.getInstance().getUpdateManager().checkForUpdates(getUpdateSource(), UpdateManager.FeedbackMethod.NOTIFICATIONS);
-    }
-    
-    *//*?}*/
-
-    /*? if v1 {*/
     @Switch(
         title = "Enabled",
         description = "Global toggle for the mod."
     )
     public boolean enabled = true;
-    /*?}*/
 
     @Switch(
         title = "Debug Location Flag",
@@ -171,28 +63,6 @@ public class DreamersConfig extends Config {
         subcategory = "Visual"
     )
     public boolean customArmorColors = false;
-
-    /*? if v0 {*//*
-    
-    @Button(
-        title = "Reset Colors",
-        text = "Reset",
-        category = "Gameplay",
-        subcategory = "Visual"
-    )
-    public Runnable resetColors = () -> {
-        redColor = new PolyColor(RED_ARMOR_COLOR);
-        blueColor = new PolyColor(BLUE_ARMOR_COLOR);
-        greenColor = new PolyColor(GREEN_ARMOR_COLOR);
-        yellowColor = new PolyColor(YELLOW_ARMOR_COLOR);
-        aquaColor = new PolyColor(AQUA_ARMOR_COLOR);
-        whiteColor = new PolyColor(WHITE_ARMOR_COLOR);
-        pinkColor = new PolyColor(PINK_ARMOR_COLOR);
-        grayColor = new PolyColor(GRAY_ARMOR_COLOR);
-        save();
-    };
-    
-    *//*?}*/
 
     @Color(
         title = "Red Color",
@@ -287,22 +157,6 @@ public class DreamersConfig extends Config {
         subcategory = "Gameplay"
     )
     public PolyColor defusalHelperColor = new PolyColor(0xFFF65E5E);
-
-    /*? if v0 {*//*
-    
-    @HUD(
-        title = "Bedwars XP Display HUD",
-        category = "Display"
-    )
-    public BedwarsXPHud bedwarsXPHud = new BedwarsXPHud();
-
-    @HUD(
-        title = "Magic Milk Time HUD",
-        category = "Display"
-    )
-    public MagicMilkTimeHud magicMilkTimeHud = new MagicMilkTimeHud();
-    
-    *//*?}*/
     
     @Checkbox(
         title = "Light Green Token Messages",
@@ -384,8 +238,6 @@ public class DreamersConfig extends Config {
     public boolean hideDreamerSoulFragmentMessages = false;
 
     @Switch(
-        //? if v0
-         //size = 2,
         title = "Replace Team Names with Verity Variants",
         category = "Fun",
         subcategory = "Verity"
