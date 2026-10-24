@@ -12,7 +12,6 @@ import at.yedel.dreamersdeluxe.utils.ServerLocation;
 
 
 
-//~ texthud_bridge
 public class MagicMilkTimeHud extends TextHud {
     public MagicMilkTimeHud() {
         super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk:", "");
