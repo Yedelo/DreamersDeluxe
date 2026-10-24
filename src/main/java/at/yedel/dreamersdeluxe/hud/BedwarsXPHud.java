@@ -4,11 +4,6 @@ package at.yedel.dreamersdeluxe.hud;
 
 import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
-    /*? if legacy {*//*
-import net.minecraft.client.entity.EntityPlayerSP;
-    *//*?} else {*/
-import net.minecraft.client.player.LocalPlayer;
-/*?}*/
 import at.yedel.dreamersdeluxe.utils.ServerLocation;
 import net.minecraft.client.Minecraft;
 
@@ -36,14 +31,9 @@ public class BedwarsXPHud extends TextHud {
     }
 
     private float experience() {
-        //? if legacy {
-//        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
-        //?} else {
-        LocalPlayer player = Minecraft.getInstance().player;
-        //?}
-        if (player == null) return 0;
-        //~ if modern 'experience' -> 'experienceProgress'
-        return player.experienceProgress;
+        if (Minecraft.getInstance().player == null) return 0;
+        //~ if modern 'xpProgress' -> 'experienceProgress'
+        return Minecraft.getInstance().player.experienceProgress;
     }
 
     @Override

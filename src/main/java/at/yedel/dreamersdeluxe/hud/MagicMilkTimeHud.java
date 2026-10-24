@@ -5,9 +5,6 @@ package at.yedel.dreamersdeluxe.hud;
 
 import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
-/*? if legacy {*//*
-import net.minecraft.init.Items;
-*//*?}*/
 import at.yedel.dreamersdeluxe.utils.ServerLocation;
 
 

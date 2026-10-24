@@ -2,10 +2,10 @@
   "compatibilityLevel": "${mixinJava}",
   "package": "at.yedel.dreamersdeluxe.mixins.legacy",
   "client": [
-    "MixinEntityPlayer",
-    "MixinGuiContainer",
-    "MixinGuiIngame",
-    "MixinLayerArmorBase"
+    "MixinPlayerEntity",
+    "MixinInventoryMenuScreen",
+    "MixinGameGui",
+    "MixinAbstractArmorLayer"
   ],
   "minVersion": "${mixinMin}",
   "verbose": true
