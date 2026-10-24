@@ -2,16 +2,8 @@ package at.yedel.dreamersdeluxe.hud;
 
 
 
-    /*? if v0 {*//*
-import at.yedel.dreamersdeluxe.utils.Constants;
-import cc.polyfrost.oneconfig.hud.SingleTextHud;
-    *//*?} else {*/
 import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 import org.polyfrost.oneconfig.api.hud.v1.TextHud;
-/*?}*/
-    /*? if forge {*//*
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-    *//*?}*/
     /*? if legacy {*//*
 import net.minecraft.client.entity.EntityPlayerSP;
     *//*?} else {*/
@@ -26,27 +18,7 @@ import net.minecraft.client.Minecraft;
 //~ texthud_bridge
 public class BedwarsXPHud extends TextHud {
     public BedwarsXPHud() {
-        /*? if v0 {*//*
-        super(
-            "XP", // title is actually useful now
-            true, // enabled obviously
-            5, // x
-            15, // y
-            1, // normal size
-            false, // no background it's ugly
-            false, // no rounded corners it's also ugly
-            0, // NO rounded corners
-            0, // no x padding why would i want it
-            0, // no y padding for the same reason
-            Constants.EMPTY_COLOR, // no background color
-            false, // no border
-            0, // NO border
-            Constants.EMPTY_COLOR // no border color
-        );
-        textType = 1;
-        *//*?} else {*/
         super("bedwars_xp_hud", "Bedwars XP Hud", Category.getINFO(), "XP:", "");
-        /*?}*/
     }
 
     @Override
