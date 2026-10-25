@@ -28,7 +28,7 @@ public abstract class MixinGameGui {
         return dreamersdeluxe$getVerityText(text);
     }
 
-    @ModifyArg(method = "renderScoreboardObjective", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 0), index = 0)
+    @ModifyArg(method = "renderScoreboardObjective", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/TextRenderer;draw(Ljava/lang/String;III)I", ordinal = 0), index = 0)
     private String dreamersdeluxe$replaceTeamNamesWithVerityVariants$stringForRendering(String text) {
         return dreamersdeluxe$getVerityText(text);
     }
