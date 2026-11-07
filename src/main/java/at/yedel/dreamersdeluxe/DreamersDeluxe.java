@@ -37,6 +37,7 @@ public class DreamersDeluxe implements ClientModInitializer{
 		ServerLocation.getInstance();
 		
 		EventManager.INSTANCE.register(ChatFilters.getInstance());
+		EventManager.INSTANCE.register(VerityVariants.getInstance());
 		registerHuds(new BedwarsXPHud(), new MagicMilkTimeHud());
 		CommandManager.register(DreamersDeluxeCommand.getInstance());
 	}
