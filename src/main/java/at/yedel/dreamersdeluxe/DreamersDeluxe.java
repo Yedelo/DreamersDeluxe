@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import net.fabricmc.api.ClientModInitializer;
 import org.polyfrost.oneconfig.api.commands.v1.CommandManager;
 import org.polyfrost.oneconfig.api.event.v1.EventManager;
+import org.polyfrost.oneconfig.api.hud.v1.Hud;
 import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 
 
@@ -36,8 +37,14 @@ public class DreamersDeluxe implements ClientModInitializer{
 		ServerLocation.getInstance();
 		
 		EventManager.INSTANCE.register(ChatFilters.getInstance());
-		HudManager.register(new BedwarsXPHud(), new MagicMilkTimeHud());
+		registerHuds(new BedwarsXPHud(), new MagicMilkTimeHud());
 		CommandManager.register(DreamersDeluxeCommand.getInstance());
+	}
+
+	private void registerHuds(Hud... huds) {
+		for (Hud hud: huds) {
+			HudManager.register(hud, DreamersConfig.getInstance().id, DreamersConfig.getInstance().iconPath);
+		}
 	}
 
 	public void onInitializeClient() {
