@@ -11,7 +11,7 @@ import at.yedel.dreamersdeluxe.utils.ServerLocation;
 
 public class MagicMilkTimeHud extends TextHud {
     public MagicMilkTimeHud() {
-        super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk:", "");
+        super("magic_milk_time_hud", "Magic Milk Time HUD", Category.getINFO(), "Magic Milk: ", "");
     }
 
     private transient long milkDrinkTime;
