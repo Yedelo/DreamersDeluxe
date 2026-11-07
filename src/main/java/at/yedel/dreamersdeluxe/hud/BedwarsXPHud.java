@@ -12,7 +12,7 @@ import net.minecraft.client.Minecraft;
 
 public class BedwarsXPHud extends TextHud {
     public BedwarsXPHud() {
-        super("bedwars_xp_hud", "Bedwars XP Hud", Category.getINFO(), "XP:", "");
+        super("bedwars_xp_hud", "Bedwars XP Hud", Category.getINFO(), "XP: ", "");
     }
 
     @Override
